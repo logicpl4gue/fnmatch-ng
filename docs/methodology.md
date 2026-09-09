@@ -48,9 +48,13 @@ test harness; on POSIX hosts the same harness binds the system libc.
   length, wildcard/class/escape density, and flag combinations. Labels
   come from the oracle (`big20k_expected.jsonl`).
 - **Gate** (`scripts/zig_gate.py`): generates a Zig test from vector
-  files and runs the matcher against every one. 20,794/20,794 agree.
-- **Randomized soak:** 203,000 further differential cases vs the oracle,
-  0 mismatches (plus 599 committed as permanent gate vectors).
+  files and runs the matcher against every one. 20,794/20,794 file-verified
+  vectors agree; the live-musl differential (ref_harness) adds m0's 117 →
+  20,911/20,911 (m0_baseline:55's D001 expectation is stale by design —
+  musl and the matcher both MATCH there).
+- **Randomized soak:** 3,000 further differential cases vs the oracle plus
+  200,000 prototype-vs-production self-checks, 0 mismatches (plus 599
+  committed as permanent gate vectors).
 - **Divergences** (`docs/divergences.md`): every disagreement gets an
   ID, reproducer, classification (`BUG_*`, `LIBC_DIFFERENCE`,
   `SPEC_AMBIGUITY`, …) and status. Six entries, none silent.
@@ -70,7 +74,7 @@ same-session ratios are the honest comparison.
 
 ```console
 $ zig build -Doptimize=ReleaseFast   # static lib (needs Zig 0.14.1)
-$ zig build test                     # 40 unit tests
+$ zig build test                     # 39 unit tests
 
 # conformance gate vs the oracle (build the harness first on Windows):
 $ gcc -O2 -std=c11 -Wall -Wextra -o scripts/ref_harness.exe scripts/ref_harness.c compat/musl_fnmatch.c

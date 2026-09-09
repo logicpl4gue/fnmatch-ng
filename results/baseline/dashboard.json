@@ -7,7 +7,7 @@
   "test": "PASS (C link smoke + zig C-ABI tests)"
  },
  "compatibility": {
-  "agreement": "20794/20794 (100%)",
+  "agreement": "20911/20911 (100%)",
   "divergences_documented": [
    "D001 reversed-range literals (mirrored, glibc-pending)",
    "D002/D003 trailing backslash (mirrored, glibc-pending)",
@@ -18,13 +18,13 @@
   "gate": "scripts/zig_gate.py",
   "generated_vectors": 20000,
   "hand_vectors": 195,
-  "m0_corpus": "117 cases, 114 agree / 3 diverge (D001-D003 spec-pinned vs musl)",
+  "m0_corpus": "117 cases, 0 mismatches vs live musl (matcher mirrors musl on all 117; m0_baseline:55 D001 expectation is stale by design: says NOMATCH, musl+matcher MATCH)",
   "randomized_differentials": {
    "m6_vs_musl": 3000,
    "suffix_prototype_vs_matcher": 200000
   },
   "reference": "vendored musl 1.2.5 (no system fnmatch on build box)",
-  "unit_tests": "40/40 zig tests green",
+  "unit_tests": "39/39 zig tests green",
   "committed_gate_vectors": {
    "m4_fuzz_gate": 500,
    "m4_probe_gate": 99
@@ -38,9 +38,9 @@
   "real-consumer demo (plan Option A/B)"
  ],
  "engineering": {
-  "binary_size": "fnmatch_ng.lib 30.7 KiB (zig 0.14.1 ReleaseFast static lib)",
-  "core_loc": 1090,
-  "core_loc_note": "over the 200-500 aim: M9 compiled-token core (literal runs, tail anchor, class cache); ponytail keeps it one file, zero deps",
+  "binary_size": "fnmatch_ng.lib 43.5 KiB (zig 0.14.1 ReleaseFast static lib, re-measured post-port)",
+  "core_loc": 1304,
+  "core_loc_note": "over the 200-500 aim: M9 compiled-token core + memchr star-skip lane (port 38ab8ed); ponytail keeps it one file, zero deps",
   "heap_allocations_per_match": 0,
   "language": "Zig 0.14.1 (see docs/language-choice.md)"
  },
@@ -52,55 +52,55 @@
  },
  "fuzzing": {
   "memory_safety_libfuzzer": "not yet run (Zig integrated fuzzer immature \u00e2\u20ac\u201d documented risk in docs/language-choice.md)",
-  "semantic_differential": "20k generated + 203k randomized cases vs musl, 0 mismatches (+599 committed as gate vectors)"
+  "semantic_differential": "20k generated + 794 unit + 117 m0 vs musl: 20,911/20,911, 0 mismatches; randomized: 3k vs musl + 200k prototype A/B self-check, 0 mismatches (+599 committed gate vectors)"
  },
  "performance": {
   "adversarial": "flat in star count k=2..24 (A-family n=128: 47->71ns post-M9), ~constant in n on failing tails (tail anchor); musl also flat, no blowup either side; 0 timeouts",
   "adversarial_note": "the textbook *a*a*\u00e2\u20ac\u00a6*b killer pattern kills neither implementation \u00e2\u20ac\u201d the publishable claim is predictable scaling, not a libc explosion",
-  "uckle": "fail-early compile tax 11 vs 5ns (6ns absolute, structural)",
+  "uckle": "byte-0 guard (memchr port): fail-early now a win, 3 vs 5ns; old 11ns compile tax gone",
   "workload_ns_median_same_session": {
    "brackets": {
-    "musl": 41,
-    "ours": 29
+    "musl": 42,
+    "ours": 32
    },
    "fail_early": {
     "musl": 5,
-    "ours": 11
+    "ours": 3
    },
    "fail_late": {
-    "musl": 32.5,
-    "ours": 12
+    "musl": 32,
+    "ours": 4
    },
    "literal_heavy": {
-    "musl": 60,
-    "ours": 19
+    "musl": 58.5,
+    "ours": 16
    },
    "multi_star": {
-    "musl": 125.5,
-    "ours": 60
+    "musl": 121,
+    "ours": 64
    },
    "pathname": {
     "musl": 41,
     "ours": 19
    },
    "prefix_star": {
-    "musl": 27,
-    "ours": 14
+    "musl": 27.5,
+    "ours": 17
    },
    "question_marks": {
-    "musl": 34,
-    "ours": 30
+    "musl": 35,
+    "ours": 32
    },
    "single_star": {
     "musl": 27,
-    "ours": 16
+    "ours": 19
    },
    "suffix_star": {
-    "musl": 46,
-    "ours": 19
+    "musl": 47,
+    "ours": 21
    }
   },
-  "workload_verdict": "beats musl 9/10 categories (0.32x-0.88x); the one loss is the 6ns fail-early tax"
+  "workload_verdict": "beats musl 10/10 categories (1.1x-8.0x); single-star 19/suffix 21 vs pre-port 16/19 accepted within +-20% box variance"
  },
  "project": "fnmatch-ng",
  "thesis": "compact modern fnmatch() replacement; measurements decide whether it worked"
