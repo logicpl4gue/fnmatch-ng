@@ -169,7 +169,7 @@ fn classMember(content: []const u8, c: u8, c2: u8) bool {
 }
 
 // ---------------------------------------------------------------------------
-// Compiled-token matcher (M9 core).
+// Compiled-token matcher (M9 core; star-skip / memchr-lane port).
 // ---------------------------------------------------------------------------
 
 const MAXT = 128; // compiled-token capacity; longer patterns fall back to
@@ -177,15 +177,19 @@ const MAXT = 128; // compiled-token capacity; longer patterns fall back to
 // measuring showed MAXT=2048 cost a flat ~20-25 ns/call (see docs/perf/scan.md).
 
 const CToken = union(enum) {
-    star: usize, // pattern byte index of the '*'
+    star: usize, // pattern byte index of the LAST '*' of a collapsed run
     q,
-    run: struct { start: usize, len: usize }, // raw literal run (pattern slice)
-    esc: u8, // single literal byte (escaped pair, lone '\', or degraded '[')
+    run: struct { start: usize, len: usize }, // multi-byte raw literal run (len >= 2)
+    esc: struct { b: u8, i: usize }, // single literal byte: 1-byte run, escape
+    // pair, lone trailing '\', degraded '[', or singleton class [x].
+    // i = pattern index of the token's first pattern byte (the raw-byte
+    // PERIOD gate needs it: a raw unescaped '.' has pat[i]=='.', an escaped
+    // '\.' has pat[i]=='\\', a class [.] has pat[i]=='[').
     cls: struct { a: usize, b: usize }, // class content = pattern[a..b]
 };
 
 /// Compile metadata: token count plus structure flags that let the caller
-/// skip work. pure_literal — one raw literal run == whole pattern (no
+/// skip work. pure_literal — the whole pattern is one raw literal (no
 /// star/?/[/escape); last_star — token index of the LAST star (if any);
 /// star_final — the last star is also the final token (tail is empty).
 const Compiled = struct {
@@ -195,8 +199,64 @@ const Compiled = struct {
     star_final: bool,
 };
 
-/// Pattern -> tokens. Returns null on buffer overflow (caller falls back to
-/// the bytewise matcher), else compile metadata.
+/// A positive class whose body is exactly one plain byte (no negation, no
+/// range, no span) is a bare byte equality — encode it as .esc. EXCEPT a
+/// '/' member: under FNM_PATHNAME a class can never match '/', while an
+/// .esc literal '/' (raw or escaped) CAN — so '[/]' must stay a class.
+fn singletonByte(content: []const u8) ?u8 {
+    if (content.len != 1) return null;
+    const b = content[0];
+    if (b == '^' or b == '!') return null; // negated-empty = matches any byte
+    if (b == '/') return null; // class may not match '/' under FNM_PATHNAME
+    return b;
+}
+
+/// Enumerate the member bytes of a simple positive class (no ranges, no
+/// spans, no negation, no embedded ']') into `out`. Returns member count,
+/// or null when the body is too complex to enumerate cheaply (caller then
+/// byte-steps instead of skipping).
+fn classMembers(content: []const u8, out: *[8]u8) ?usize {
+    if (content.len == 0) return 0;
+    if (content[0] == '^' or content[0] == '!') return null; // negated
+    var m: usize = 0;
+    var i: usize = 0;
+    if (content[i] == ']') { // leading ']' literal member (musl)
+        out[m] = ']';
+        m += 1;
+        i += 1;
+    } else if (content[i] == '-') { // leading '-' literal member
+        out[m] = '-';
+        m += 1;
+        i += 1;
+    }
+    while (i < content.len) : (i += 1) {
+        const b = content[i];
+        if (b == '-' or b == '[') return null; // range / span: bail
+        if (m >= 8) return null;
+        out[m] = b;
+        m += 1;
+    }
+    return m;
+}
+
+fn addCand(set: []u8, n: *usize, b: u8) void {
+    for (set[0..n.*]) |x| if (x == b) return;
+    if (n.* >= set.len) return;
+    set[n.*] = b;
+    n.* += 1;
+}
+
+/// Pattern -> tokens. Restructuring vs a plain bytewise walk (all
+/// semantics-identical, musl-verified on the corpus):
+///   a. consecutive '*' collapse into one .star (keeping the LAST star's
+///      pattern index so the tail anchor still lines up);
+///   b. 1-byte raw literal runs become .esc (one byte compare instead of a
+///      runEq call);
+///   c. singleton positive classes ([a], [.], [-], []] ...) become .esc of
+///      that byte (classMember for a single non-negated member is exactly a
+///      byte equality, incl. the fold semantics); '/' members stay .cls;
+///   d. multi-byte literal runs stay .run (tail-anchor candidates).
+/// Returns null on buffer overflow (caller falls back to matchBytewise).
 fn compileToks(p: []const u8, noescape: bool, buf: []CToken) ?Compiled {
     var n: usize = 0;
     var i: usize = 0;
@@ -206,30 +266,40 @@ fn compileToks(p: []const u8, noescape: bool, buf: []CToken) ?Compiled {
         const c = p[i];
         if (!noescape and c == '\\') {
             if (i + 1 < p.len) {
-                buf[n] = .{ .esc = p[i + 1] };
+                buf[n] = .{ .esc = .{ .b = p[i + 1], .i = i } };
                 n += 1;
                 i += 2;
             } else { // trailing lone backslash = literal '\' (musl D002/D003)
-                buf[n] = .{ .esc = '\\' };
+                buf[n] = .{ .esc = .{ .b = '\\', .i = i } };
                 n += 1;
                 i += 1;
             }
         } else if (c == '*') {
-            buf[n] = .{ .star = i };
-            last_star = n;
-            n += 1;
-            i += 1;
+            if (n > 0 and buf[n - 1] == .star) {
+                buf[n - 1] = .{ .star = i }; // collapse; keep the LAST '*'
+                i += 1;
+            } else {
+                buf[n] = .{ .star = i };
+                last_star = n;
+                n += 1;
+                i += 1;
+            }
         } else if (c == '?') {
             buf[n] = .q;
             n += 1;
             i += 1;
         } else if (c == '[') {
             if (scanClass(p, i)) |cl| {
-                buf[n] = .{ .cls = .{ .a = i + 1, .b = cl } };
+                const content = p[i + 1 .. cl];
+                if (singletonByte(content)) |b| {
+                    buf[n] = .{ .esc = .{ .b = b, .i = i } };
+                } else {
+                    buf[n] = .{ .cls = .{ .a = i + 1, .b = cl } };
+                }
                 n += 1;
                 i = cl + 1;
             } else { // unterminated: '[' is an ordinary literal byte (musl)
-                buf[n] = .{ .esc = '[' };
+                buf[n] = .{ .esc = .{ .b = '[', .i = i } };
                 n += 1;
                 i += 1;
             }
@@ -240,13 +310,19 @@ fn compileToks(p: []const u8, noescape: bool, buf: []CToken) ?Compiled {
                 if (b == '*' or b == '?' or b == '[') break;
                 if (!noescape and b == '\\') break;
             }
-            buf[n] = .{ .run = .{ .start = start, .len = i - start } };
+            const len = i - start;
+            if (len == 1) {
+                buf[n] = .{ .esc = .{ .b = p[start], .i = start } };
+            } else {
+                buf[n] = .{ .run = .{ .start = start, .len = len } };
+            }
             n += 1;
         }
     }
     return .{
         .n = n,
-        .pure_literal = n == 1 and buf[0] == .run and buf[0].run.len == p.len,
+        .pure_literal = n == 1 and ((buf[0] == .run and buf[0].run.len == p.len) or
+            (buf[0] == .esc and p.len == 1)),
         .last_star = last_star,
         .star_final = (last_star != null and last_star.? == n - 1),
     };
@@ -268,12 +344,63 @@ fn runEq(pat: []const u8, str: []const u8, folding: bool) bool {
 }
 
 /// Compiled-token matcher over one bounded recursion (tail anchor).
+///
+/// Star-retry acceleration (memchr lane, docs/perf/memchr.md): when a star's
+/// continuation token fails, the matcher does not byte-step. It jumps to the
+/// next string position where that token could possibly match, using a
+/// necessary-condition candidate set built from the token's first byte:
+///   * .esc continuation -> {b, fold(b)};
+///   * .run continuation -> {first byte, fold(first)};
+///   * simple positive .cls -> its enumerated members (+ folds).
+/// The jump is bounded so it can never violate the PATHNAME cover guard or
+/// the PERIOD segment gate (guardrails 4 and 1-3):
+///   * under FNM_PATHNAME the bytes a star ABSORBS must all be != '/'; the
+///     search stops at (and includes) the next '/', so nothing is skipped
+///     across a separator (the D006 cover-add guard stays the final word),
+///     and landing ON a '/' is allowed because a literal continuation may
+///     consume it;
+///   * every jump lands back at the loop top where the PERIOD gate re-runs
+///     before the token is consumed (guardrail 3).
 fn go(pat: []const u8, str: []const u8, flags: c_int, buf: []CToken) bool {
     const pathname = (flags & FNM_PATHNAME) != 0;
     const period = (flags & FNM_PERIOD) != 0;
     const folding = (flags & FNM_CASEFOLD) != 0;
     const noescape = (flags & FNM_NOESCAPE) != 0;
-    const plain = (flags & (FNM_PATHNAME | FNM_PERIOD | FNM_CASEFOLD)) == 0;
+
+    // Byte-0 guard (M9/early): a pattern opening with a plain literal can
+    // only match if string[0] equals it (fold-aware). Reject before paying
+    // for compileToks — this is the whole fail-early category. Skips '*',
+    // '?', '[' and (unless NOESCAPE) '\' openings: escapes and classes
+    // need token semantics (D005 raw-byte PERIOD gate, D002/D003).
+    if (pat.len > 0 and str.len > 0) {
+        const c0 = pat[0];
+        if (c0 != '*' and c0 != '?' and c0 != '[' and
+            (noescape or c0 != '\\') and
+            !(str[0] == c0 or (folding and foldByte(str[0]) == c0)))
+            return false;
+    }
+
+    // Raw pre-compile end-byte reject: any full match consumes the final
+    // string byte with the final pattern byte, so when the pattern ends in a
+    // plain literal (raw, escaped, or a trailing lone '\') the string's last
+    // byte must fold-equal it. Runs on the RAW pattern so failing star-flood
+    // patterns (tail literal 'b' vs an all-'a' string) reject WITHOUT paying
+    // the token compile at all. Meta/class-closing tails are skipped
+    // conservatively ('*','?','[',']' may not be a plain literal — ']' may
+    // close a class whose body ends in a backslash member, e.g. "[\]"; the
+    // exact token-level endcheck below covers those after compile). Any
+    // OTHER final byte is a raw literal outside a class (unterminated
+    // classes degrade to literals), so the string's last byte must
+    // fold-equal it.
+    if (str.len > 0 and pat.len > 0) {
+        const p_last = pat[pat.len - 1];
+        const chk = p_last != '*' and p_last != '?' and p_last != '[' and p_last != ']';
+        if (chk) {
+            const last = str[str.len - 1];
+            if (!(last == p_last or (folding and foldByte(last) == p_last)))
+                return false;
+        }
+    }
 
     const compiled = compileToks(pat, noescape, buf) orelse
         return matchBytewise(pat, str, flags); // overflow fallback
@@ -284,16 +411,19 @@ fn go(pat: []const u8, str: []const u8, flags: c_int, buf: []CToken) bool {
     // overhead on the literal-heavy workload.
     if (compiled.pure_literal) return runEq(pat, str, folding);
 
-    // --- tail anchor -------------------------------------------------------
+    // --- tail anchor: MULTI-BYTE literal tails only ------------------------
     // If the only token after the LAST star is one raw literal run covering
     // pat[star+1..], any full match must end with that run consuming the
     // string's final bytes: endswith reject first, then one bounded
-    // recursion over the shortened prefix (which now ends in '*'). Skipped
-    // when the star is final (tail empty). Disabled under FNM_PERIOD:
-    // stripping relocates a segment-leading '.' to string position 0 where
-    // the star token would be misjudged (vector *.x vs .x, PERIOD -> NOMATCH
-    // must hold). The recursion runs through this same go(), so the D006
-    // cover guard keeps the star from ever covering '/' under PATHNAME.
+    // recursion over the shortened prefix (which now ends in '*'). Single-
+    // byte tails are .esc tokens (not .run) and do NOT anchor: their anchor
+    // recursion is what made the star-flood matching families (B/E) walk
+    // O(n) — those resolve faster via the walk+skip path. Skipped when the
+    // star is final (tail empty). Disabled under FNM_PERIOD: stripping
+    // relocates a segment-leading '.' to string position 0 where the star
+    // token would be misjudged (vector *.x vs .x, PERIOD -> NOMATCH must
+    // hold). The recursion runs through this same go(), so the D006 cover
+    // guard keeps the star from ever covering '/' under PATHNAME.
     if ((flags & FNM_PERIOD) == 0 and !compiled.star_final) {
         if (compiled.last_star) |ls| {
             const ps = buf[ls].star;
@@ -312,6 +442,27 @@ fn go(pat: []const u8, str: []const u8, flags: c_int, buf: []CToken) bool {
         }
     }
 
+    // --- necessary-condition reject on the string's final byte -------------
+    // Any full match consumes the LAST token exactly at the string end, so
+    // that final byte must be consumable by the last token. This is a pure
+    // reject (never strips, never recurses): it gives the failing star-flood
+    // families (A/D: string ends 'a', tail needs 'b') their instant NOMATCH
+    // back WITHOUT the tail-anchor recursion that made the matching families
+    // (B/E) walk the whole string. Matching tails then resolve by walk+skip.
+    if (str.len > 0 and n > 0) {
+        const last = str[str.len - 1];
+        const last_ok = switch (buf[n - 1]) {
+            .esc => |e| last == e.b or (folding and foldByte(last) == e.b),
+            .run => |r| blk: {
+                const pc = pat[r.start + r.len - 1];
+                break :blk last == pc or (folding and foldByte(last) == pc);
+            },
+            .cls => |cl| classMember(pat[cl.a..cl.b], last, if (folding) foldByte(last) else last),
+            else => true, // .q / .star consume any byte (or nothing)
+        };
+        if (!last_ok) return false;
+    }
+
     // --- main token loop ---------------------------------------------------
     var t: usize = 0; // token cursor
     var s: usize = 0; // string cursor
@@ -324,10 +475,14 @@ fn go(pat: []const u8, str: []const u8, flags: c_int, buf: []CToken) bool {
         // FNM_PERIOD leading-dot gate (musl): a segment-leading '.' in the
         // string must be met by a RAW unescaped '.' as the current token
         // (guardrails 1-3). Leading = s==0, or after '/' with PATHNAME.
+        // .esc carries its pattern origin in .i: a raw '.' has pat[i]=='.',
+        // an escaped '\.' has pat[i]=='\\' (D005), a class [.] has
+        // pat[i]=='[' — all three land on their musl side of the gate.
         if (period and ch == '.' and (s == 0 or (pathname and str[s - 1] == '/'))) {
             const dot_ok = blk: {
                 if (t >= n) break :blk false;
                 switch (buf[t]) {
+                    .esc => |e| break :blk e.b == '.' and pat[e.i] == '.',
                     .run => |r| break :blk pat[r.start] == '.',
                     else => break :blk false, // star/?/class/escaped '.': reject
                 }
@@ -362,7 +517,7 @@ fn go(pat: []const u8, str: []const u8, flags: c_int, buf: []CToken) bool {
                     }
                 },
                 .esc => |e| {
-                    if (ch == e or (folding and foldByte(ch) == e)) {
+                    if (ch == e.b or (folding and foldByte(ch) == e.b)) {
                         t += 1;
                         s += 1;
                         advanced = true;
@@ -381,36 +536,95 @@ fn go(pat: []const u8, str: []const u8, flags: c_int, buf: []CToken) bool {
         }
         if (advanced) continue;
 
-        // Failure: give the last '*' one more byte (greedy rewind).
+        // Failure: give the last '*' more cover (greedy rewind, accelerated).
         if (star_tok) |st| {
             const after = st + 1;
-            if (plain) {
-                // final star absorbs the whole remainder in one jump
-                if (after >= n) {
-                    s = str.len;
-                    continue;
+
+            if (after >= n) {
+                // Final star absorbs the rest of the current segment. Under
+                // FNM_PATHNAME it cannot absorb '/' at all: if a '/' remains
+                // ahead, no continuation exists -> no match.
+                if (pathname) {
+                    if (rewind < str.len and
+                        std.mem.indexOfScalar(u8, str[rewind..], '/') != null)
+                        return false;
                 }
-                // jump to the next run-start candidate byte (memchr)
-                if (buf[after] == .run and buf[after].run.len > 0) {
-                    const c0 = pat[buf[after].run.start];
-                    if (rewind + 1 < str.len) {
-                        const off = std.mem.indexOfScalar(u8, str[rewind + 1 ..], c0) orelse
-                            return false;
-                        rewind = rewind + 1 + off;
+                s = str.len;
+                continue;
+            }
+
+            // Build the necessary first-byte candidate set for buf[after]
+            // (what the continuation token must see at its start).
+            var cand: [16]u8 = undefined;
+            var nc: usize = 0;
+            var skippable = false;
+            switch (buf[after]) {
+                .esc => |e| {
+                    addCand(&cand, &nc, e.b);
+                    if (folding) addCand(&cand, &nc, foldByte(e.b));
+                    skippable = true;
+                },
+                .run => |r| {
+                    const c0 = pat[r.start];
+                    addCand(&cand, &nc, c0);
+                    if (folding) addCand(&cand, &nc, foldByte(c0));
+                    skippable = true;
+                },
+                .cls => |cl| {
+                    var members: [8]u8 = undefined;
+                    if (classMembers(pat[cl.a..cl.b], &members)) |cm| {
+                        var mi: usize = 0;
+                        while (mi < cm) : (mi += 1) {
+                            addCand(&cand, &nc, members[mi]);
+                            if (folding) addCand(&cand, &nc, foldByte(members[mi]));
+                        }
+                        skippable = true;
+                    } // else: too complex / negated -> byte-step
+                },
+                else => {}, // .q matches any byte: no skip
+            }
+
+            if (skippable and nc > 0) {
+                if (rewind + 1 > str.len) return false;
+                // Under PATHNAME the star cover may not absorb '/': the byte
+                // at str[rewind] (the first to be absorbed) must not be '/',
+                // and the search must stop at (and include) the next '/' so
+                // nothing is skipped across a separator (D006 stays intact;
+                // landing ON the '/' is legal — a literal continuation may
+                // consume it).
+                var hay_end = str.len;
+                if (pathname) {
+                    if (str[rewind] == '/') return false; // D006 cover guard
+                    if (std.mem.indexOfScalar(u8, str[rewind..], '/')) |f| {
+                        hay_end = rewind + f + 1;
+                    }
+                }
+                const hay = str[rewind + 1 .. hay_end];
+                if (hay.len > 0) {
+                    // memchr-style skip: a 1-2 byte needle uses two
+                    // indexOfScalar calls (vectorized in the std); larger
+                    // candidate sets fall back to indexOfAny (a scalar loop
+                    // in Zig 0.14, ~1 ns/byte).
+                    const off: ?usize = if (nc == 1)
+                        std.mem.indexOfScalar(u8, hay, cand[0])
+                    else if (nc == 2) blk: {
+                        const o1 = std.mem.indexOfScalar(u8, hay, cand[0]);
+                        const o2 = std.mem.indexOfScalar(u8, hay, cand[1]);
+                        break :blk if (o1 == null) o2 else if (o2 == null) o1 else @min(o1.?, o2.?);
+                    } else std.mem.indexOfAny(u8, hay, cand[0..nc]);
+                    if (off) |j| {
+                        rewind = rewind + 1 + j;
                         s = rewind;
                         t = after;
-                        continue;
+                        continue; // loop top re-checks the PERIOD gate
                     }
-                    return false;
                 }
-            } else {
-                // FNM_PATHNAME: '*' never matches '/'. The star's cover is
-                // monotonic, so once the NEXT byte to absorb (str[rewind])
-                // is '/', no later candidate can work -> reject (D006 cover
-                // guard; guardrail 4). The old failure-byte guard missed
-                // deep failures after a literal '/' was consumed.
-                if (pathname and rewind < str.len and str[rewind] == '/') return false;
+                return false; // no candidate before the segment end == no match
             }
+
+            // byte-step fallback (identical to the classic greedy rewind,
+            // incl. the D006 cover guard).
+            if (pathname and rewind < str.len and str[rewind] == '/') return false;
             rewind += 1;
             s = rewind;
             t = after;
