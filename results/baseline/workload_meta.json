@@ -1,0 +1,44 @@
+{
+ "date": "2026-09-09",
+ "generator": "gen_workload.py v1",
+ "seed": 7,
+ "case_count": 2400,
+ "categories_per_target": 240,
+ "category_counts": {
+  "literal-heavy": 240,
+  "single-star": 240,
+  "prefix-star": 240,
+  "suffix-star": 240,
+  "multi-star": 240,
+  "question-marks": 240,
+  "brackets": 240,
+  "pathname": 240,
+  "fail-early": 240,
+  "fail-late": 240
+ },
+ "musl_validation": {
+  "reference": "vendored musl 1.2.5 via scripts/ref_harness.exe --json",
+  "initial_mismatches": 0,
+  "repaired": 0,
+  "final": "100% agree (verified before timing use)"
+ },
+ "string_styles": {
+  "styles": [
+   "linux",
+   "repo",
+   "package",
+   "log",
+   "short",
+   "deep"
+  ],
+  "weights": [
+   5,
+   4,
+   2,
+   2,
+   2,
+   2
+  ]
+ },
+ "corpus_file": "tests/corpus/workload.jsonl"
+}

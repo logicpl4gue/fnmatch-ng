@@ -1,0 +1,219 @@
+{
+ "date": "2026-09-09",
+ "study": "normal-workload benchmark (plan sections 22-25)",
+ "reference": "vendored musl 1.2.5 (compat/musl_fnmatch.c) via bench/adversarial_musl.exe",
+ "ours": "src/matcher.zig, zig 0.14.1, ReleaseFast",
+ "method": {
+  "ours": "warmup + 5 timed runs, >=1024 iters, ~1ms budget, min ns/match; reported = median over 3 passes",
+  "musl": "fresh process per case, probe then batches to ~2ms, hard 5s cap; reported = median over 3 passes"
+ },
+ "passes": 3,
+ "timeout_cap_s": 5.0,
+ "corpus": "tests/corpus/workload.jsonl",
+ "corpus_gen": "scripts/gen_workload.py seed 7 (results/baseline/workload_meta.json)",
+ "case_count": 2400,
+ "timeouts": 0,
+ "semantic_mismatches": [],
+ "categories": {
+  "literal-heavy": {
+   "ours": {
+    "n": 240,
+    "median_ns": 19.0,
+    "mean_ns": 19.6,
+    "stddev_ns": 6.6,
+    "p95_ns": 35,
+    "min_ns": 7,
+    "max_ns": 48
+   },
+   "musl": {
+    "n": 240,
+    "median_ns": 60.0,
+    "mean_ns": 63.3,
+    "stddev_ns": 24.1,
+    "p95_ns": 116,
+    "min_ns": 20,
+    "max_ns": 189
+   }
+  },
+  "single-star": {
+   "ours": {
+    "n": 240,
+    "median_ns": 16.0,
+    "mean_ns": 16.1,
+    "stddev_ns": 1.4,
+    "p95_ns": 17,
+    "min_ns": 14,
+    "max_ns": 24
+   },
+   "musl": {
+    "n": 240,
+    "median_ns": 27.0,
+    "mean_ns": 27.1,
+    "stddev_ns": 4.6,
+    "p95_ns": 35,
+    "min_ns": 18,
+    "max_ns": 43
+   }
+  },
+  "prefix-star": {
+   "ours": {
+    "n": 240,
+    "median_ns": 14.0,
+    "mean_ns": 14.7,
+    "stddev_ns": 2.0,
+    "p95_ns": 18,
+    "min_ns": 12,
+    "max_ns": 21
+   },
+   "musl": {
+    "n": 240,
+    "median_ns": 27.0,
+    "mean_ns": 33.1,
+    "stddev_ns": 12.2,
+    "p95_ns": 58,
+    "min_ns": 19,
+    "max_ns": 74
+   }
+  },
+  "suffix-star": {
+   "ours": {
+    "n": 240,
+    "median_ns": 19.0,
+    "mean_ns": 19.6,
+    "stddev_ns": 2.0,
+    "p95_ns": 22,
+    "min_ns": 15,
+    "max_ns": 30
+   },
+   "musl": {
+    "n": 240,
+    "median_ns": 46.0,
+    "mean_ns": 49.3,
+    "stddev_ns": 11.5,
+    "p95_ns": 71,
+    "min_ns": 29,
+    "max_ns": 74
+   }
+  },
+  "multi-star": {
+   "ours": {
+    "n": 240,
+    "median_ns": 60.0,
+    "mean_ns": 61.6,
+    "stddev_ns": 19.8,
+    "p95_ns": 89,
+    "min_ns": 31,
+    "max_ns": 97
+   },
+   "musl": {
+    "n": 240,
+    "median_ns": 125.5,
+    "mean_ns": 122.5,
+    "stddev_ns": 42.6,
+    "p95_ns": 183,
+    "min_ns": 51,
+    "max_ns": 311
+   }
+  },
+  "question-marks": {
+   "ours": {
+    "n": 240,
+    "median_ns": 30.0,
+    "mean_ns": 30.1,
+    "stddev_ns": 5.0,
+    "p95_ns": 37,
+    "min_ns": 16,
+    "max_ns": 39
+   },
+   "musl": {
+    "n": 240,
+    "median_ns": 34.0,
+    "mean_ns": 34.8,
+    "stddev_ns": 7.7,
+    "p95_ns": 48,
+    "min_ns": 16,
+    "max_ns": 68
+   }
+  },
+  "brackets": {
+   "ours": {
+    "n": 240,
+    "median_ns": 29.0,
+    "mean_ns": 31.0,
+    "stddev_ns": 12.7,
+    "p95_ns": 51,
+    "min_ns": 12,
+    "max_ns": 59
+   },
+   "musl": {
+    "n": 240,
+    "median_ns": 41.0,
+    "mean_ns": 45.7,
+    "stddev_ns": 21.5,
+    "p95_ns": 81,
+    "min_ns": 17,
+    "max_ns": 121
+   }
+  },
+  "pathname": {
+   "ours": {
+    "n": 240,
+    "median_ns": 19.0,
+    "mean_ns": 19.3,
+    "stddev_ns": 6.3,
+    "p95_ns": 28,
+    "min_ns": 6,
+    "max_ns": 44
+   },
+   "musl": {
+    "n": 240,
+    "median_ns": 41.0,
+    "mean_ns": 54.1,
+    "stddev_ns": 47.6,
+    "p95_ns": 148,
+    "min_ns": 4,
+    "max_ns": 267
+   }
+  },
+  "fail-early": {
+   "ours": {
+    "n": 240,
+    "median_ns": 11.0,
+    "mean_ns": 11.0,
+    "stddev_ns": 2.0,
+    "p95_ns": 14,
+    "min_ns": 6,
+    "max_ns": 21
+   },
+   "musl": {
+    "n": 240,
+    "median_ns": 5.0,
+    "mean_ns": 5.2,
+    "stddev_ns": 0.7,
+    "p95_ns": 7,
+    "min_ns": 4,
+    "max_ns": 9
+   }
+  },
+  "fail-late": {
+   "ours": {
+    "n": 240,
+    "median_ns": 12.0,
+    "mean_ns": 12.5,
+    "stddev_ns": 1.8,
+    "p95_ns": 15,
+    "min_ns": 9,
+    "max_ns": 21
+   },
+   "musl": {
+    "n": 240,
+    "median_ns": 32.5,
+    "mean_ns": 33.0,
+    "stddev_ns": 5.0,
+    "p95_ns": 42,
+    "min_ns": 23,
+    "max_ns": 50
+   }
+  }
+ }
+}

@@ -1,0 +1,500 @@
+{"pattern": "\\]\\\\", "string": "c", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\[", "string": "Zaz", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[]]a?[", "string": "xz/d", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\\\*[abc]*z\\]9y", "string": "zcb09c0d_", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[0-9a-f]\\\\*\\]*[-a][]\\a\\[", "string": "/b0b/_1cz/", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[!.][]]\\]]z[z-a][!a]*", "string": "y-", "flags": [], "result": "NOMATCH"}
+{"pattern": "[*][a\\c]a*[[\\a", "string": "Xa", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[^0-9]x1", "string": "zx.yZa/Ya", "flags": [], "result": "NOMATCH"}
+{"pattern": "-d\\?\\._[z-a]", "string": "Yy", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "1?]/[\\][]\\\\*", "string": "", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\*\\*b[]]", "string": "YzxY0Y-zdd", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[*]a*\\\\*b\\[", "string": "Xx-y1X0c", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\*_", "string": "y-Y", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "a\\*x_", "string": "9-Yxz9z", "flags": [], "result": "NOMATCH"}
+{"pattern": "*", "string": "", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "MATCH"}
+{"pattern": "\\?b[a-z0-9]", "string": "_d0", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a\\][a-cx]", "string": "z/01", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[[!a]\\?", "string": "z", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "by\\.", "string": "9Za9dx1d", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\[?[", "string": "Y1bc-1ba", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[]]\\.[/]", "string": "adcxb.x-", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[abc]", "string": "z0d.-", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "_z\\\\*]", "string": "01yd_bY0zX", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "-\\*][!a]x", "string": "Z_/ad", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[]]\\a[a-cx]", "string": "Zd_z1b", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a\\c]", "string": "z.-c//d9Z9", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[!]][a-][a-b-c]?[!]][a-c]", "string": "9z-/", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-][-a][[!.][!a]_\\]\\[", "string": "ab", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[!a][!.][a-b-c][]\\*-*?", "string": "ZX", "flags": [], "result": "NOMATCH"}
+{"pattern": "b[*][0", "string": "Z-XyYX101", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\??\\\\*b", "string": "x0", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "*[a-cx][/]", "string": "", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[a\\]a_[?]\\\\*\\a-", "string": "0Y01-Y", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a-z0-9]?c1\\a[a-z0-9]\\a", "string": "Xy", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a-][a-cx]]\\a\\?", "string": "ab.0cba", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "9\\\\[^0-9][a-]", "string": "1.ydy9d", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a-b-c][a-]\\[\\]9", "string": "b", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "*[a-cx]\\ab[0-9a-f][*]]", "string": "Z1", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a\\]\\[b\\.\\.[a-z0-9][a-c][a-cx]", "string": "Yz", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[.][[\\]b\\a", "string": "0YYXac9", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[[[\\][a\\c][*]\\]\\[", "string": "dyzzY", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "-\\[[!]]\\\\\\*", "string": "9xYda9YY", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\*\\.\\?[!a][a-z0-9]\\\\", "string": "9c0d-0Z_X", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "z[.]\\?d[]]", "string": "cy0ycya-XY", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\]", "string": "c01z-d0", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "b\\][a\\]0\\]", "string": "1ZYXcb", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-c]\\*/9\\\\[!.]", "string": "1y-YcY.", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[^0-9]y[?]\\a1\\?", "string": "1/d_Z", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a-][.]]?\\\\00\\[", "string": "9a", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\?[^0-9]", "string": "xY9Z1-YY0X", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\\\x][\\]\\*\\]9", "string": "YxXY./_X/z", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\a\\.][a-z0-9]?[abc]\\\\*", "string": "X", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\\\[!.]b[]][a-b-c][a-cx]-[a-cx]", "string": "Ybc090c-dd", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "*\\*\\\\*", "string": "x0Z-yy", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[a-b-c][]", "string": "x0X1X1a", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "?\\\\*x[/]]", "string": "z_Yd", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[a\\]\\]\\a\\*.[!]]?", "string": ".0z1xdb9X", "flags": [], "result": "NOMATCH"}
+{"pattern": "*y?\\\\*[]]x", "string": "9/dXcx0", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\a\\?[a-z0-9][[!.]b", "string": "0Ya/0cX9-d", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "x", "string": "dd0x_X.", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "/\\.[]]", "string": "", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[]by[!.]", "string": "b_1zd", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "*\\\\*", "string": "xzc", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "d[z-a]*\\\\", "string": "1y", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\\\*", "string": "/ay", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\a", "string": "dcYX.ZdX", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[", "string": "abY_-dY", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "y[!a]", "string": "1/", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[.][^0-9]/1?", "string": "X0-/X_", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-cx][", "string": "Yc", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\?[", "string": "b/", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a-z0-9]z.\\][0-9a-f]\\[\\.", "string": "d..", "flags": [], "result": "NOMATCH"}
+{"pattern": "[/]_9*[a-z0-9]", "string": "ay19", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\[a-b-c]\\*\\[[*][0-9a-f]", "string": "/cbx", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[", "string": "-YX-1zZ", "flags": [], "result": "NOMATCH"}
+{"pattern": "[!]]][!]]\\aa\\]", "string": "x19", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\a\\a", "string": "0Z.c_b-a", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "9[a-b-c]", "string": "-9d_a/yX.c", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\a[a-b-c]", "string": "/0/y", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a-]y", "string": "x0dx1", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[!.]\\.[a\\]", "string": "X//xXcYX9", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[!a]", "string": "XXbb", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\?[\\][a\\][abc][a\\]", "string": "z/YZxbXd/c", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\.", "string": "ZZy..9_", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "*[\\?[a-b-c]\\\\[a\\]", "string": "x.9_xc9_/x", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a-c][-a]y0\\\\\\]b", "string": "Zb/x_xyy", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\\\*?9\\.\\[[?]d[a\\]", "string": "X9_ZZ-y", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "a[0-9a-f][^0-9]", "string": "d9cy1XZx", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "dy", "string": "", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[0-9a-f]", "string": "_c.", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[^0-9]", "string": "/xxb9YxYXa", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\\\", "string": "Z-d909db", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[.][^0-9]0[a-c][a\\]\\\\\\*", "string": ".0-ycZ.cZ", "flags": [], "result": "NOMATCH"}
+{"pattern": "a[0-9a-f]\\*[!a][a-z0-9][a\\][", "string": "b.", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "/[?][z-a]", "string": "X", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\[y1[a\\c][abc]", "string": "z9.b/1d.-_", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[-a][?][\\]\\?*[-a][a-cx]", "string": "c", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[.]?[[0-9a-f][/]", "string": "bc_.", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\.", "string": "", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\\\*[a\\]", "string": "", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "y[!a][\\][a-cx][]a][a\\c]", "string": "1", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\]]\\\\0\\._[*", "string": "99yy.Z0d", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\.\\\\*[a\\c]", "string": "cc", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": ".[/]*\\\\*[*][\\][a\\c]", "string": "yx-ZbdZx9y", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "d[\\]-\\[[a\\c]\\]", "string": "cZyxy/bac", "flags": [], "result": "NOMATCH"}
+{"pattern": "][a-c][!.][!.]0", "string": "_9X", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\a", "string": "Xz/x//.", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "*[*]\\.", "string": "xdb", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "z\\\\9?]0[!]]", "string": "ac_ZX0z", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\.", "string": "Y9ad-x1._", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a\\]", "string": "z.9c_ZX1", "flags": [], "result": "NOMATCH"}
+{"pattern": "z[a-cx][0-9a-f]", "string": "zZ", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\", "string": "YZXxZ", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "y\\][\\]1[a\\]\\*", "string": "/d-9a", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "_9[abc][-a][.]", "string": "x0bdza", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[/]][.]-.\\\\", "string": "z/YZ_/yX", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[[a-]x[]x?", "string": "/Y.19d_", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "_\\*\\?[*]]\\]", "string": "1xd00bZ0", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\\\*", "string": "dxay-YY", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[!.]\\??[abc]c", "string": "yb_Yy9", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\?", "string": "9XZYx", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\?[*][-a]\\\\*?", "string": "_-", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[^0-9]\\\\", "string": "/0a1_0X", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a\\]\\\\**][a-b-c][", "string": "9", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\[*][[a\\c]", "string": "z0cZXZ.", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\[[z-a]", "string": "/Z", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "]\\.", "string": "", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[*][a\\c][!]]", "string": "", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": ".\\?\\\\**b", "string": "b9-yx-.", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "z[a-z0-9]-[!.]b\\a[]_", "string": "", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "][]\\\\*\\[.*z[a-c]", "string": "zcd", "flags": [], "result": "NOMATCH"}
+{"pattern": "[abc]\\*[][abc]\\]\\\\*[a-z0-9]d", "string": "xZ0-", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\[/][abc]/[", "string": "-x9_yY", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[z-a]a[/][z-a]", "string": "01z/cX", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-]\\a", "string": "bczzYz/9az", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "].", "string": "z_0/9_X.9", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[?][?][y[abc][]", "string": "a1", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\*\\[[!.]y\\.", "string": "YXy.yxYybZ", "flags": [], "result": "NOMATCH"}
+{"pattern": "/\\*", "string": "x0cxaz", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\.*\\a\\][!]]\\a", "string": "dd", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\]x*[a-b-c]", "string": "009cbc_", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[abc][-a]\\a[a-cx][^0-9]a\\.", "string": "bc1b", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\[[a-b-c]x\\[[a-b-c][", "string": "xcZ.bd", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "y[.]zy", "string": "", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[0-9a-f][a-b-c][a-z0-9][a-b-c]\\]*\\\\[!.]", "string": "_/", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\][]]", "string": "x", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a\\c][/]\\?", "string": "c/_a9", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "?[-a]?\\]\\\\\\a\\]", "string": "c.10YzX", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a-b-c][.][a-cx]", "string": "/-x9/zY", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "y\\._", "string": "/_1", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\[[a\\c]\\*0d[!]]", "string": "-", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[]\\\\]", "string": "X", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[/][0-9a-f]*\\[[\\*[!.]", "string": "_/-dad10ZZ", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[*]?[a-c][!]][!a]\\\\[a-cx][a-]", "string": "Y.YdXX/c", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "b", "string": "", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "?.", "string": "Zyy", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "d?\\a[.]0[a-b-c]\\[", "string": "1cd", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[*]\\.[!.][a-b-c][a\\]\\\\*", "string": "y9cx/d0", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\[/]", "string": "x_-yYyyY9", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[*][0-9a-f]0", "string": "z_", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "]][!a][]\\]\\]\\.", "string": "YZdd1.bXz", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "?\\*", "string": "1.cXd0z", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\?9[]][-a][!]]\\]", "string": "dx-b1xx0", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "_z[a\\][!.][*]\\?", "string": "Z1.XY/", "flags": [], "result": "NOMATCH"}
+{"pattern": "][0-9a-f]", "string": "_", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "0\\][a\\]\\.*\\.\\\\", "string": "Xa-zx9y", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[\\\\", "string": "", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "?[!a]*\\?\\[", "string": "Xaa/d-xY", "flags": [], "result": "NOMATCH"}
+{"pattern": "[^0-9]\\\\*c[z-a]", "string": "xcZayX.zx-", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\?\\?[a-b-c][/]", "string": "x01c0", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "/", "string": "zZZz", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[][^0-9]\\?[a-c]y", "string": "_-", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "*\\?\\[", "string": "", "flags": [], "result": "NOMATCH"}
+{"pattern": "[!.]][a-b-c]\\\\\\]\\[c", "string": "/_c9-0b0", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\*[a-z0-9]*\\\\?[0-9a-f][]]", "string": ".x", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "*[/]", "string": "Zc1c", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[abc][a\\]\\\\\\?/?*\\*", "string": "bY.", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\*[!.][a-cx]", "string": "-/1", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\*\\*b-\\][a\\c]", "string": "a.z990X", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "_\\[\\a\\\\*[a-c]a].", "string": "dzZ0", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "c*\\[1[0-9a-f][!a][\\]\\a", "string": "b", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\]_[a-cx]", "string": "X10cz", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\\\[a-cx]", "string": "d.zX9X", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\].", "string": "bz/xc0._Z", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\\\\\a1?\\?", "string": "da", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\a[!.]b[]]", "string": "a", "flags": [], "result": "NOMATCH"}
+{"pattern": "0b-b", "string": "", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\a", "string": "Ya_-y.", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\.a[.]", "string": "9Y-", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\a", "string": "-z", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "_", "string": "YY.Z/", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\*[a-c]_\\.[a\\]", "string": "yd0", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[abc]?[a-b-c][-a]\\\\*", "string": "a.xzY", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[!a]\\[\\.", "string": "", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "y[\\\\[z-a]", "string": "Z", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-z0-9][^0-9]", "string": "9/xy-", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\*\\\\[!]]\\*9[a\\]", "string": "", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "9\\?c[!a]\\\\*\\?", "string": "/Xa1z0c.1d", "flags": [], "result": "NOMATCH"}
+{"pattern": "[/]", "string": "-Y", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[^0-9]_/?\\?*", "string": "a/1d", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\a\\?[!a][.].\\\\", "string": "-ybd/zz-1", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\*[a\\c]c\\*[!]]", "string": "Yzdazy9cYd", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-z0-9]\\a\\a[*]\\.[]9", "string": "", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\\\*z", "string": "0b_Z-Y0Y9", "flags": [], "result": "NOMATCH"}
+{"pattern": ".\\\\\\.\\\\_\\*[a-z0-9]", "string": "zx1/cc", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[]][a-c]]\\\\\\?9[", "string": ".-1_YYby", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\a\\\\**[a[!]][?]", "string": "d0x9X/1-cz", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "z[1*", "string": "Z_xZ", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\[d\\*", "string": "z1.XZ", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "?[.]", "string": "yY..y1c", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[-a]", "string": "z00z1-Zaa", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[.]d\\]", "string": "1-_.X1zX9Z", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\*[.]", "string": "99dYc/1/1", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\[__[a-z0-9][z-a]", "string": "", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\a[abc][a\\]y?", "string": "Y.Z9yy9dYx", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "y?[!]]", "string": "/.19Xd", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "9", "string": "cYzZd_Z9-", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\[[a\\]0", "string": "/y", "flags": [], "result": "NOMATCH"}
+{"pattern": "[-a][abc]\\]\\\\[-a][!a]\\a[a-b-c]", "string": "Y_abz.", "flags": [], "result": "NOMATCH"}
+{"pattern": "?\\*[]\\\\*[^0-9][a\\]", "string": "ycb9", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[[a-z0-9]y0[a-]\\a\\[?", "string": "aZy", "flags": [], "result": "NOMATCH"}
+{"pattern": "*[!.]\\*[abc]*\\?", "string": "X_d1Yx", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[a-z0-9]", "string": "Z", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[^0-9][.]\\?", "string": "Y", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "?[/]\\*[a-]", "string": "/0aacdY", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "**", "string": "0X91", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "MATCH"}
+{"pattern": "\\\\", "string": "", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "y[^0-9]\\*\\\\?[*]", "string": "1c./yd__X", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "]?\\*-\\a0/", "string": "y_.axYY", "flags": [], "result": "NOMATCH"}
+{"pattern": "[!a]\\\\*\\[/1[.]\\[", "string": "._xbayZ", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "b[\\]\\[[a-b-c][]\\.0", "string": "Y", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\.*\\a\\*_[.]", "string": "9ZzX/.b0X/", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "*\\[\\\\*_\\\\**", "string": "Yx", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\[\\a", "string": "Xz/", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\?][a\\]ca[abc][/]", "string": "YZyyxd_/Z", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": ".[[a-cx]0c[\\]\\\\*", "string": "zzz9.xyZ", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "][a-z0-9]", "string": "9-aZda", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\*\\\\/", "string": "xb9z", "flags": [], "result": "NOMATCH"}
+{"pattern": "b[a-z0-9]?]\\]*", "string": "_-/ba1", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "/[??\\\\b\\\\*", "string": "b-11xy", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[z-a]", "string": "", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[!.][a-z0-9][a\\][!a][[-a]", "string": "cZy-_c.0", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[!]]\\.-*\\\\*[!.]", "string": "0b/_d_19a", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[!]]d[!a]c_[a-c][a-]?", "string": "-dz-cxaX/b", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\][a\\]", "string": "1-_", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-c][^0-9][!.]***[\\]", "string": "9", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\.[a-z0-9]", "string": "", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[z-a][c", "string": ".axd", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a-b-c]", "string": "c9z.z-Zx", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\]\\\\*", "string": "Xc9c1dzY", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\[\\?y[a-cx][!]]?", "string": "./-ya/00-", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\*0[!]][^0-9]\\?-", "string": "z1", "flags": [], "result": "NOMATCH"}
+{"pattern": "-[a-c]", "string": "_zb1Yx._0", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[\\]\\\\*[a-z0-9]", "string": "yZx", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\]a", "string": "Y0c", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\[[0-9a-f][*]ay\\]", "string": "y__.", "flags": [], "result": "NOMATCH"}
+{"pattern": "[][0-9a-f]y[?]a", "string": "xXy0cZ1z", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\?].", "string": "Y", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\[/]\\*\\\\\\*c\\]1", "string": "a9czXY", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\a[a\\]c", "string": "Z1y/Xc0__", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\a9", "string": "y", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "1", "string": "dcYxa-Z-", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "]", "string": "Y_.", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\.*\\a\\**[^0-9][a-b-c]", "string": "z/-.dx-11-", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "z][a\\c][0-9a-f][?]", "string": "9._x", "flags": [], "result": "NOMATCH"}
+{"pattern": "[-a]\\a*\\*", "string": "x", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\]\\?[a-b-c]z[\\]\\*-", "string": "YX", "flags": [], "result": "NOMATCH"}
+{"pattern": "_[a-]\\[[a-z0-9]", "string": "", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "?\\][]", "string": "zZacc9..1", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[a-b-c][]]\\?[\\]", "string": "/dZ1", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "9[]]*[]]\\[?z", "string": "Za109", "flags": [], "result": "NOMATCH"}
+{"pattern": "[\\\\[0-9a-f]\\]\\[[a-]\\[", "string": "z0z0", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "*/0", "string": "abY./Y1Yy", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\\\a[a\\c]\\\\*[a-z0-9]].", "string": "X/aaz_d/", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\]\\.y[?][/]", "string": "._1Xy", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": ".\\[[a-b-c]\\\\", "string": "ay-YxZ/", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\*[-a]\\][!.]\\\\*", "string": "..1.", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\[[!.][-a]x[a-z0-9][*]z", "string": "9Xxy/-_cc", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\\\*[[a-b-c]\\.[]", "string": "yyax01", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\?\\.[a-c]*", "string": "1", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "][]", "string": "XxxZ", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\\\*", "string": "YX1Xx", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[!.]z[!.][0-9a-f][]0[/]\\]", "string": "", "flags": [], "result": "NOMATCH"}
+{"pattern": "[?][?]0", "string": "a-90", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\a[-a]]d\\a[\\]", "string": "191-zcyx9", "flags": [], "result": "NOMATCH"}
+{"pattern": "[]]]\\*\\*\\?\\\\*\\\\", "string": "", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[!]]]0*", "string": "cxb1_", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\]-\\[[*]\\*\\?[a-][a-z0-9]", "string": "/ybZ", "flags": [], "result": "NOMATCH"}
+{"pattern": "[!]]\\*dd[a-cx]", "string": "", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[a-b-c]*9]?", "string": "c0yYc", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\", "string": "dxY0/.Xz", "flags": [], "result": "NOMATCH"}
+{"pattern": "[z-a]\\*[*][a\\c]?[a\\c][*]", "string": "ycZx", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "1[a-c]]*[0-9a-f]", "string": "0/c_zZYx9", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[^0-9]\\?\\\\\\*\\.\\*[a-b-c]", "string": "YZ1b.0cazY", "flags": [], "result": "NOMATCH"}
+{"pattern": "a[/]_[[!a]b1\\[", "string": "_zzZ0y-d", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "]c][a-z0-9]\\.y[a-cx]z", "string": "-/0z_1.XX_", "flags": [], "result": "NOMATCH"}
+{"pattern": "9", "string": "", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\[\\\\*\\]1[a\\]", "string": "db", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\][a\\]\\]b[a\\].", "string": "/", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a\\]b[!]]", "string": "", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[[/]", "string": "d0a_b9", "flags": [], "result": "NOMATCH"}
+{"pattern": "[z-a][]\\a_[\\]\\a", "string": "_xx/", "flags": [], "result": "NOMATCH"}
+{"pattern": "[abc][]]\\a?][?][a\\]\\[", "string": "c1-", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\a[0-9a-f]", "string": "/.a", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "9_[z-a]", "string": "b0z.xcd", "flags": [], "result": "NOMATCH"}
+{"pattern": "c-\\\\**", "string": "XYa/", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\][.]?*", "string": "Zb1yb9", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\*\\][a\\a", "string": "_Zd", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "1\\[[*][a-c]\\][a-b-c]*[0-9a-f]", "string": "90Z1b", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "-1d\\a*?[a\\]", "string": "-9", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-]?x?[z-a]?[a\\c][^0-9]", "string": "/x", "flags": [], "result": "NOMATCH"}
+{"pattern": "zx[!.]x\\[\\\\", "string": "", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[][\\.\\.", "string": ".y_YYxyz0b", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "z", "string": "zzc", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "0]z[abc][a-b-c]][a\\][\\]", "string": "bZdXXb0Z_b", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\.", "string": "99Xy-9", "flags": [], "result": "NOMATCH"}
+{"pattern": "[!.][\\]\\\\", "string": "-/XayX", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\\\*?*\\.[!a][a-b-c]?[a-b-c]", "string": "", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[a-z0-9]cc*[!]]]", "string": "ydxz", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\.19d\\.", "string": "-Xca01z", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\\\*\\*[", "string": "cbd-y", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[.][a\\c]\\.[b", "string": "/._c", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\\\]", "string": "Z-Zzz", "flags": [], "result": "NOMATCH"}
+{"pattern": "[!.][!a]", "string": "9-/1Z.x", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[-a]d?\\*[^0-9]?][a-cx]", "string": "zaz91", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a\\c][a-c]\\\\*[a\\][a-c]", "string": "z/", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "_\\\\[!.][a\\c]0]ax", "string": "/az/.cx1a", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[-a][a-b-c]\\?_[a-cx][[?]", "string": ".X9", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\\\*?0[?]c", "string": "/YZ", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\?1?\\*[\\]\\]", "string": "", "flags": [], "result": "NOMATCH"}
+{"pattern": "[abc]\\]\\][a-][a-]\\\\*", "string": "d1xy1da", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a\\c][z-a]_\\[", "string": "c9", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\*[a-z0-9]\\a\\a[.]/.[0-9a-f]", "string": "/zcX", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": ".[*]", "string": "XY00", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "z\\\\*[[a-c]\\?", "string": "YXy9.", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[^0-9][!.]", "string": "9", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[][a\\c]\\.[a-cx]\\a][a-cx]", "string": "0ycYdX/d", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-b-c]\\?]", "string": "Ybczx", "flags": [], "result": "NOMATCH"}
+{"pattern": "][a-b-c][*]", "string": "z/9", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[9\\a-\\\\*a\\\\*", "string": "9", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a\\][a-cx]][a\\c]", "string": "yYx", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "yc\\\\\\?[z-a]]?", "string": "x", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": ".[/][*][a\\c]z[-a][a-c][]", "string": "1-.bbY.d", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\][!a]", "string": "c0Yc9b/a", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[?][a-cx][!]]\\*[[\\.[a\\]", "string": "", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\?", "string": "Zc", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\]\\]\\?[a\\]]", "string": "y10Yy", "flags": [], "result": "NOMATCH"}
+{"pattern": "c[z-a]__[a-z0-9][!.]", "string": "z.", "flags": [], "result": "NOMATCH"}
+{"pattern": "*\\.[!]][a\\c]\\a", "string": "1xZ-a9X", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "/b/[/][!.]y", "string": "1d1_", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "?[a-z0-9]?[a-c]", "string": "aca-dZdX.0", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\*[abc]/d/", "string": "d", "flags": [], "result": "NOMATCH"}
+{"pattern": "[!.][-a].", "string": "19", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[]][", "string": "yc1b", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[abc]\\]\\?[a-][-a][^0-9]\\a", "string": "dX1", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\]", "string": "aYxab_1", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "9\\.[a-b-c]_b[a-c]", "string": "Yd./9_", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a-cx]\\.", "string": "zyb_", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "*[0-9a-f][!.][a-]\\[", "string": "", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[a\\c][?][*]a\\*[abc][a-]/", "string": "Xx0cbxYa", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\", "string": "", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "-", "string": "X", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "b\\[", "string": "z", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": ".[\\\\[a-]?[^0-9]", "string": "x-y.", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\*\\a*b\\\\.[[?]", "string": "zx", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[-a][abc][?][!a][!]][a-c][a-]\\?", "string": ".Z0Xz1bzd", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[-a]*\\\\*\\a\\.\\*c\\*", "string": "Zdc0X/-", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\?[^0-9]\\azb[?]", "string": "", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\.\\\\*\\[", "string": ".1z/xbb1xd", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-cx]\\][!.]c[a\\c]b[\\][a-]", "string": "YX1a-00/-", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "a[abc]\\.", "string": "b-Z_YdXY", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[a-c]]", "string": "x.9", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\]\\.", "string": "aXXx_y.Xa", "flags": [], "result": "NOMATCH"}
+{"pattern": "y[!]][]]?*[a-cx]*", "string": ".bd_.Xb.", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[!a][a-]\\\\*", "string": "dYz", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[]][/]\\?[*][\\]0", "string": "9X.czXcc", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\?\\]\\\\", "string": "xzZa9-x", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[!.]\\[\\[1[/][!.]", "string": "/YZXX9x9y1", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[!]]*\\][-a][-a][\\\\.", "string": "xy0db/xX1.", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[abc][\\.[-a]", "string": "9da_YxX/", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "1", "string": "/9Y9xX/d", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\?", "string": "a_0X", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[.][a\\]", "string": "01zacXcZ", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[.][abc]y[/]", "string": "_.a9.", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "-[a-]]]x", "string": "--", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\][\\]", "string": "c_ca-", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\.?\\a\\.\\]x[*]", "string": "aax", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "-[^0-9][[?]/", "string": "ad1", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[0-9a-f][a\\]", "string": "1Yd.Za", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[z-a][z-a][abc]", "string": ".-.b", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[!a][!.]\\?[-a][a-cx]", "string": "91.d.xaxZ9", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[-a]\\\\[a-]*[!a]\\\\0[0-9a-f]", "string": "XZ", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "**\\\\", "string": "9xz", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[^0-9]\\.", "string": "bzdbZb", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "a\\*", "string": "d", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\\\*\\\\xy", "string": "yZ0Zc", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a-]", "string": "yadz", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "?[^0-9]\\\\*z\\[[a-cx]", "string": "X", "flags": [], "result": "NOMATCH"}
+{"pattern": "[0-9a-f]*\\.", "string": "_", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[!]]]\\a\\a\\?_[a-z0-9][a-c]", "string": "Yd_XZcdx__", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\[[.]z", "string": "0", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\]][a-z0-9][a-b-c]1\\.\\][]", "string": "xadbcYay_/", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[^0-9]]?\\.[]]", "string": "/ab-d_X/", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[abc]\\]c[z-a][a-b-c][^0-9][?]]", "string": "yZb_1Y_", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-c][z-a]y9\\\\*", "string": "d-..-.", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\][!a]b[a-c]", "string": "/bX-Z-1a", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "z", "string": "_/dYdz/YZ", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[0-9a-f]d[!a]", "string": "z91b9_0c", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\.[0-9a-f][[!]][a\\c][/]", "string": "1ZXyaZ", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\.\\a.[\\]\\.\\\\[z", "string": "cz-19", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "?[^0-9]\\*\\][a\\c]", "string": "-bzy1x", "flags": [], "result": "NOMATCH"}
+{"pattern": "[?[abc]0*", "string": "/", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "z/", "string": "c_x0dZdZZ1", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\?[", "string": "_0-zx", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\][]]a", "string": ".d/-Y01", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[0-9a-f]a[.]\\*?\\a", "string": ".d0X", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "z", "string": "9c09", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "/[!.][abc]", "string": "cYY-", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "-\\\\*[.][[a-c]?", "string": "Xxa_z9/cdy", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "/[a-cx][z-a]", "string": "y/9z", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a-b-c]-d\\*/[]0", "string": "1yb", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[z-a]\\\\*\\?\\a]0\\[", "string": "19Y", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-][!]]?", "string": "y-xa91", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "y[!.][a-c][a-cx]z][\\*", "string": "", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[0-9a-f]/9*", "string": "", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-b-c]?1\\\\\\.0\\\\*", "string": "-x1d/bxY", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "xx[]][/]y]", "string": "Xb", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\\\\\]\\.", "string": "dYbX.Y", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\\\?\\]\\\\[[a-z0-9][a\\]a", "string": "y-c0Yd/a", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a\\]b", "string": "xacXY", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-c][abc]][a\\]\\*", "string": "9/bc_c_1y0", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\[\\a", "string": "xd9Y", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "9\\?1\\.0", "string": "-c-.", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[!a]\\\\*/\\\\1[\\]\\.", "string": "cY9xx9", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\*[abc][\\][^0-9][a\\]y\\?", "string": "adXyy_bc", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[*]][]][-a]\\?", "string": "1d-aa_day", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "][.][a-z0-9]/[!]]\\\\\\?.", "string": "azY", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[!.]1\\]?", "string": "-adyxXY", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "9", "string": "z9_", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\a-[a\\][a\\c]a[?]", "string": "Y0bZa-/c", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "b[!.][/]\\]][][a\\]", "string": "/Xx9_-.Yyz", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "?\\\\", "string": "Yd-Y90zba", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[-a]\\*y[.]\\[", "string": "1/.b1xZ", "flags": [], "result": "NOMATCH"}
+{"pattern": "0", "string": "dddbZdy", "flags": [], "result": "NOMATCH"}
+{"pattern": "c]]*", "string": "./", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "0_", "string": "", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[\\]\\][/][a-z0-9]\\a?z0", "string": ".aXxaZcc", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[-a][a-b-c]?a.[", "string": "_9/.a1", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[a-]9]][\\\\*[z-a]", "string": "9zcZ9Z/y", "flags": [], "result": "NOMATCH"}
+{"pattern": "1", "string": "109-Zdb.1", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\?[a\\]", "string": "", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "_?[!]]??\\[", "string": "Xdx--", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\\\[*]", "string": ".", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "9[/].0]c[?]", "string": "xZZdzXY", "flags": [], "result": "NOMATCH"}
+{"pattern": "yb[/]", "string": "d", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\\\]x\\*?", "string": "-b99zyYad", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "z[!]]", "string": "X/_YxxZXX", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "y\\a[a-b-c]", "string": "bX1cy", "flags": [], "result": "NOMATCH"}
+{"pattern": "[^0-9][!a]\\*1\\.", "string": "adya1z0X", "flags": [], "result": "NOMATCH"}
+{"pattern": "[abc][a-c][-a][\\][]]\\?", "string": "y9xy1cx9", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\\\*\\*\\?", "string": "x-/1_", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\[", "string": "ZZ_d1b/", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\*[]a\\?\\\\[/][!.]", "string": "zx.y0-Xb", "flags": [], "result": "NOMATCH"}
+{"pattern": "9\\\\\\.\\]z-[a\\]x", "string": "", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[a-b-c]?", "string": "1-zZ//1X", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[[*]y\\\\", "string": "aYaay-Y_cc", "flags": [], "result": "NOMATCH"}
+{"pattern": "[zy[a-c]\\\\*0\\*[", "string": "c90", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "a\\[\\a\\][?]\\[?\\\\", "string": "x", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": ".?a.", "string": "1Xa-b/--1d", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[abc]d\\a[a-cx]\\[[a\\].\\a", "string": "0", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[!a][^0-9]\\a", "string": "", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\.\\\\*-[]_", "string": "XdXdcbb_/", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\.\\a\\*", "string": "b9__d-0a", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[/]9\\*[a-cx][^0-9]\\?[a-]", "string": "xZ1.-YXy0", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\]", "string": "-Z.9xxY9/", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "1[a-z0-9]\\[[a\\c]z[a-]", "string": "zc/zYX//9-", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\*[a-c][]", "string": "z0Y/_z_", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[!a]", "string": "adx9X", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\*\\]\\][d\\*", "string": "1d", "flags": [], "result": "NOMATCH"}
+{"pattern": "[^0-9][a-][]", "string": ".yZ-c", "flags": [], "result": "NOMATCH"}
+{"pattern": "c?[0-9a-f]", "string": "-0bz9", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "\\]-[a\\]d]*", "string": "Z_", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[-a][0-9a-f][?]][a\\][a\\][a-]\\[", "string": "0_z9-_y", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[z-a][[0-9a-f]\\*[.]", "string": "-XX--", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[a-b-c]\\.\\?[!a]\\??\\?[a\\c]", "string": "/z/", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[\\\\_[\\]", "string": ".__a", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "d\\[[\\]", "string": "XX/c/z--z", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "a[a\\]xa[a-z0-9]y\\a]", "string": "9/abxx/_", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "b[a-][a-cx][*]", "string": "9cydybYayz", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\[\\?[0-9a-f][-a][/][^0-9]\\a", "string": "c_zxz9-", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[!]][\\]]", "string": "zaxX", "flags": [], "result": "NOMATCH"}
+{"pattern": "[][a\\]0[abc][[*][!]]", "string": "y-0y-X", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "*[abc]\\\\", "string": "9czY", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "b[", "string": "Xy1zZb", "flags": ["FNM_PATHNAME", "FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\.", "string": "/_z_ba", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "?[*]", "string": "Xcc0XxY", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\*[-a]\\a", "string": "ca", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "[-a]\\*1", "string": "XbZ", "flags": [], "result": "NOMATCH"}
+{"pattern": "]\\*\\a?[]\\*[a-c]", "string": "zc0dy", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[^0-9]", "string": "/zz_-", "flags": [], "result": "NOMATCH"}

@@ -1,0 +1,38 @@
+{"pattern": "*", "string": ".hidden", "flags": [], "result": "MATCH"}
+{"pattern": "?", "string": ".", "flags": [], "result": "MATCH"}
+{"pattern": ".", "string": ".", "flags": [], "result": "MATCH"}
+{"pattern": "[.]", "string": ".", "flags": [], "result": "MATCH"}
+{"pattern": "*", "string": ".hidden", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "*", "string": "normal", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "*", "string": "a.b", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "*", "string": ".", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": ".*", "string": ".hidden", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": ".", "string": ".", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": ".", "string": ".x", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "?", "string": ".", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "?", "string": "a", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "[.]", "string": ".", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "[!a]", "string": ".", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "[ab.]", "string": "a", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "[ab.]", "string": ".", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "[a-z]*", "string": ".x", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "x*", "string": ".x", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "?*", "string": ".x", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "a?b", "string": "a.b", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "a*", "string": "a.b", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "a.b", "string": "a.b", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "\\.", "string": ".", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "\\.x", "string": ".x", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "a/*", "string": "a/.b", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "a/*", "string": "a/.b", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "*", "string": "a/.b", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "*", "string": "a/b", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "*", "string": ".a/b", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "*/*", "string": "a/.b", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "*/*", "string": "a/b", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "MATCH"}
+{"pattern": ".*/*", "string": ".a/b", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "*/.b", "string": "a/.b", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "a/.*/c", "string": "a/.b/c", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "a/*/c", "string": "a/b/c", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "a/*/c", "string": "a/.b/c", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "*", "string": "a/.b", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}

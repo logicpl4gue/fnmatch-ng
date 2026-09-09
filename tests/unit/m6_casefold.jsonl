@@ -1,0 +1,31 @@
+{"pattern": "A", "string": "a", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "a", "string": "A", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "ABC", "string": "abc", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "abc", "string": "ABC", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "AbC", "string": "aBc", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "AbC", "string": "abC", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "[A-Z]", "string": "q", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "[a-z]", "string": "Q", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "[A-Z]", "string": "Q", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "[A-Z]", "string": "0", "flags": ["FNM_CASEFOLD"], "result": "NOMATCH"}
+{"pattern": "[!A-Z]", "string": "q", "flags": ["FNM_CASEFOLD"], "result": "NOMATCH"}
+{"pattern": "[!A-Z]", "string": "0", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "[a-z]", "string": "5", "flags": ["FNM_CASEFOLD"], "result": "NOMATCH"}
+{"pattern": "[a-c]", "string": "B", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "[A-C]", "string": "b", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "[^a-c]", "string": "B", "flags": ["FNM_CASEFOLD"], "result": "NOMATCH"}
+{"pattern": "*.C", "string": "x.c", "flags": ["FNM_CASEFOLD", "FNM_PATHNAME"], "result": "MATCH"}
+{"pattern": "*.C", "string": "src/x.c", "flags": ["FNM_CASEFOLD", "FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "SRC/*.C", "string": "src/main.c", "flags": ["FNM_CASEFOLD", "FNM_PATHNAME"], "result": "MATCH"}
+{"pattern": "SRC/*", "string": "src/main.c", "flags": ["FNM_CASEFOLD", "FNM_PATHNAME"], "result": "MATCH"}
+{"pattern": "src/[A-Z]*", "string": "src/main.c", "flags": ["FNM_CASEFOLD", "FNM_PATHNAME"], "result": "MATCH"}
+{"pattern": ".X", "string": ".x", "flags": ["FNM_CASEFOLD", "FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "*.X", "string": ".x", "flags": ["FNM_CASEFOLD", "FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "\\A", "string": "a", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "\\a", "string": "A", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "café", "string": "café", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "é", "string": "É", "flags": ["FNM_CASEFOLD"], "result": "NOMATCH"}
+{"pattern": "É", "string": "é", "flags": ["FNM_CASEFOLD"], "result": "NOMATCH"}
+{"pattern": "abc", "string": "ab", "flags": ["FNM_CASEFOLD"], "result": "NOMATCH"}
+{"pattern": "?", "string": "A", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "FILE-?.LOG", "string": "file-a.log", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}

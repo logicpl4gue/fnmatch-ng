@@ -1,0 +1,168 @@
+{
+ "date": "2026-09-09",
+ "study": "adversarial extension post-M9: k=12..24 stars, n=128/256",
+ "method": "same as adversarial.json; 16/16 semantic agreement ours==musl",
+ "finding": "both flat in k; ours now faster than musl on star-heavy shapes (tail anchor); no blowup either side",
+ "cases": [
+  {
+   "family": "A",
+   "k": 12,
+   "n": 128,
+   "pattern_len": 26,
+   "string_len": 128,
+   "result": "NOMATCH",
+   "ours_ns": 47,
+   "musl_ns": 102
+  },
+  {
+   "family": "A",
+   "k": 12,
+   "n": 256,
+   "pattern_len": 26,
+   "string_len": 256,
+   "result": "NOMATCH",
+   "ours_ns": 45,
+   "musl_ns": 145
+  },
+  {
+   "family": "A",
+   "k": 16,
+   "n": 128,
+   "pattern_len": 34,
+   "string_len": 128,
+   "result": "NOMATCH",
+   "ours_ns": 55,
+   "musl_ns": 117
+  },
+  {
+   "family": "A",
+   "k": 16,
+   "n": 256,
+   "pattern_len": 34,
+   "string_len": 256,
+   "result": "NOMATCH",
+   "ours_ns": 56,
+   "musl_ns": 157
+  },
+  {
+   "family": "A",
+   "k": 20,
+   "n": 128,
+   "pattern_len": 42,
+   "string_len": 128,
+   "result": "NOMATCH",
+   "ours_ns": 62,
+   "musl_ns": 135
+  },
+  {
+   "family": "A",
+   "k": 20,
+   "n": 256,
+   "pattern_len": 42,
+   "string_len": 256,
+   "result": "NOMATCH",
+   "ours_ns": 65,
+   "musl_ns": 166
+  },
+  {
+   "family": "A",
+   "k": 24,
+   "n": 128,
+   "pattern_len": 50,
+   "string_len": 128,
+   "result": "NOMATCH",
+   "ours_ns": 71,
+   "musl_ns": 152
+  },
+  {
+   "family": "A",
+   "k": 24,
+   "n": 256,
+   "pattern_len": 50,
+   "string_len": 256,
+   "result": "NOMATCH",
+   "ours_ns": 69,
+   "musl_ns": 181
+  },
+  {
+   "family": "B",
+   "k": 12,
+   "n": 128,
+   "pattern_len": 26,
+   "string_len": 129,
+   "result": "MATCH",
+   "ours_ns": 132,
+   "musl_ns": 183
+  },
+  {
+   "family": "B",
+   "k": 12,
+   "n": 256,
+   "pattern_len": 26,
+   "string_len": 257,
+   "result": "MATCH",
+   "ours_ns": 136,
+   "musl_ns": 186
+  },
+  {
+   "family": "B",
+   "k": 16,
+   "n": 128,
+   "pattern_len": 34,
+   "string_len": 129,
+   "result": "MATCH",
+   "ours_ns": 179,
+   "musl_ns": 186
+  },
+  {
+   "family": "B",
+   "k": 16,
+   "n": 256,
+   "pattern_len": 34,
+   "string_len": 257,
+   "result": "MATCH",
+   "ours_ns": 178,
+   "musl_ns": 229
+  },
+  {
+   "family": "B",
+   "k": 20,
+   "n": 128,
+   "pattern_len": 42,
+   "string_len": 129,
+   "result": "MATCH",
+   "ours_ns": 200,
+   "musl_ns": 397
+  },
+  {
+   "family": "B",
+   "k": 20,
+   "n": 256,
+   "pattern_len": 42,
+   "string_len": 257,
+   "result": "MATCH",
+   "ours_ns": 208,
+   "musl_ns": 243
+  },
+  {
+   "family": "B",
+   "k": 24,
+   "n": 128,
+   "pattern_len": 50,
+   "string_len": 129,
+   "result": "MATCH",
+   "ours_ns": 325,
+   "musl_ns": 279
+  },
+  {
+   "family": "B",
+   "k": 24,
+   "n": 256,
+   "pattern_len": 50,
+   "string_len": 257,
+   "result": "MATCH",
+   "ours_ns": 425,
+   "musl_ns": 277
+  }
+ ]
+}

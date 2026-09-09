@@ -1,0 +1,16 @@
+# build outputs
+zig-out/
+.zig-cache/
+*.exe
+*.obj
+*.o
+*.lib
+*.a
+*.so
+*.dll
+# python
+__pycache__/
+*.pyc
+# local preview / scratch
+.preview/
+results/latest/

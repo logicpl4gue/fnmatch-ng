@@ -1,0 +1,107 @@
+{
+ "c_abi": {
+  "exports": [
+   "fnmatch_ng",
+   "fnmatch_ng_flags"
+  ],
+  "test": "PASS (C link smoke + zig C-ABI tests)"
+ },
+ "compatibility": {
+  "agreement": "20794/20794 (100%)",
+  "divergences_documented": [
+   "D001 reversed-range literals (mirrored, glibc-pending)",
+   "D002/D003 trailing backslash (mirrored, glibc-pending)",
+   "D004 corpus bug (fixed)",
+   "D005 escaped-dot PERIOD gate (mirrored, glibc-pending)",
+   "D006 PATHNAME star-cover (matcher bug, FIXED + regression vectors)"
+  ],
+  "gate": "scripts/zig_gate.py",
+  "generated_vectors": 20000,
+  "hand_vectors": 195,
+  "m0_corpus": "117 cases, 114 agree / 3 diverge (D001-D003 spec-pinned vs musl)",
+  "randomized_differentials": {
+   "m6_vs_musl": 3000,
+   "suffix_prototype_vs_matcher": 200000
+  },
+  "reference": "vendored musl 1.2.5 (no system fnmatch on build box)",
+  "unit_tests": "40/40 zig tests green",
+  "committed_gate_vectors": {
+   "m4_fuzz_gate": 500,
+   "m4_probe_gate": 99
+  }
+ },
+ "date": "2026-09-09",
+ "deferred": [
+  "POSIX [:classes:] (structural only)",
+  "FNM_LEADING_DIR",
+  "glibc cross-check (no Linux host)",
+  "real-consumer demo (plan Option A/B)"
+ ],
+ "engineering": {
+  "binary_size": "fnmatch_ng.lib 30.7 KiB (zig 0.14.1 ReleaseFast static lib)",
+  "core_loc": 1090,
+  "core_loc_note": "over the 200-500 aim: M9 compiled-token core (literal runs, tail anchor, class cache); ponytail keeps it one file, zero deps",
+  "heap_allocations_per_match": 0,
+  "language": "Zig 0.14.1 (see docs/language-choice.md)"
+ },
+ "environment": {
+  "cpu": "i5-12400F",
+  "libc": "none (MinGW-w64; musl 1.2.5 vendored)",
+  "os": "MINGW64_NT (Windows)",
+  "toolchain": "gcc 16.2.0, zig 0.14.1"
+ },
+ "fuzzing": {
+  "memory_safety_libfuzzer": "not yet run (Zig integrated fuzzer immature \u00e2\u20ac\u201d documented risk in docs/language-choice.md)",
+  "semantic_differential": "20k generated + 203k randomized cases vs musl, 0 mismatches (+599 committed as gate vectors)"
+ },
+ "performance": {
+  "adversarial": "flat in star count k=2..24 (A-family n=128: 47->71ns post-M9), ~constant in n on failing tails (tail anchor); musl also flat, no blowup either side; 0 timeouts",
+  "adversarial_note": "the textbook *a*a*\u00e2\u20ac\u00a6*b killer pattern kills neither implementation \u00e2\u20ac\u201d the publishable claim is predictable scaling, not a libc explosion",
+  "uckle": "fail-early compile tax 11 vs 5ns (6ns absolute, structural)",
+  "workload_ns_median_same_session": {
+   "brackets": {
+    "musl": 41,
+    "ours": 29
+   },
+   "fail_early": {
+    "musl": 5,
+    "ours": 11
+   },
+   "fail_late": {
+    "musl": 32.5,
+    "ours": 12
+   },
+   "literal_heavy": {
+    "musl": 60,
+    "ours": 19
+   },
+   "multi_star": {
+    "musl": 125.5,
+    "ours": 60
+   },
+   "pathname": {
+    "musl": 41,
+    "ours": 19
+   },
+   "prefix_star": {
+    "musl": 27,
+    "ours": 14
+   },
+   "question_marks": {
+    "musl": 34,
+    "ours": 30
+   },
+   "single_star": {
+    "musl": 27,
+    "ours": 16
+   },
+   "suffix_star": {
+    "musl": 46,
+    "ours": 19
+   }
+  },
+  "workload_verdict": "beats musl 9/10 categories (0.32x-0.88x); the one loss is the 6ns fail-early tax"
+ },
+ "project": "fnmatch-ng",
+ "thesis": "compact modern fnmatch() replacement; measurements decide whether it worked"
+}

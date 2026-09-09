@@ -1,0 +1,117 @@
+{"pattern": "abc", "string": "abc", "flags": [], "result": "MATCH"}
+{"pattern": "abc", "string": "abd", "flags": [], "result": "NOMATCH"}
+{"pattern": "abc", "string": "abcd", "flags": [], "result": "NOMATCH"}
+{"pattern": "", "string": "", "flags": [], "result": "MATCH"}
+{"pattern": "", "string": "a", "flags": [], "result": "NOMATCH"}
+{"pattern": "a", "string": "", "flags": [], "result": "NOMATCH"}
+{"pattern": "ABC", "string": "abc", "flags": [], "result": "NOMATCH"}
+{"pattern": "src/main.c", "string": "src/main.c", "flags": [], "result": "MATCH"}
+{"pattern": "*", "string": "", "flags": [], "result": "MATCH"}
+{"pattern": "*", "string": "abc", "flags": [], "result": "MATCH"}
+{"pattern": "*", "string": "a/b/c", "flags": [], "result": "MATCH"}
+{"pattern": "a*c", "string": "abc", "flags": [], "result": "MATCH"}
+{"pattern": "a*c", "string": "axyzc", "flags": [], "result": "MATCH"}
+{"pattern": "a*c", "string": "ac", "flags": [], "result": "MATCH"}
+{"pattern": "a*c", "string": "ab", "flags": [], "result": "NOMATCH"}
+{"pattern": "*a", "string": "aaaa", "flags": [], "result": "MATCH"}
+{"pattern": "*a", "string": "abc", "flags": [], "result": "NOMATCH"}
+{"pattern": "a*", "string": "a", "flags": [], "result": "MATCH"}
+{"pattern": "a*", "string": "b", "flags": [], "result": "NOMATCH"}
+{"pattern": "*ab*", "string": "xxabyy", "flags": [], "result": "MATCH"}
+{"pattern": "*ab*", "string": "axb", "flags": [], "result": "NOMATCH"}
+{"pattern": "a*b*c", "string": "aXbYc", "flags": [], "result": "MATCH"}
+{"pattern": "**", "string": "xyz", "flags": [], "result": "MATCH"}
+{"pattern": "?", "string": "a", "flags": [], "result": "MATCH"}
+{"pattern": "?", "string": "", "flags": [], "result": "NOMATCH"}
+{"pattern": "?", "string": "ab", "flags": [], "result": "NOMATCH"}
+{"pattern": "a?c", "string": "abc", "flags": [], "result": "MATCH"}
+{"pattern": "a?c", "string": "ac", "flags": [], "result": "NOMATCH"}
+{"pattern": "??", "string": "ab", "flags": [], "result": "MATCH"}
+{"pattern": "??", "string": "a", "flags": [], "result": "NOMATCH"}
+{"pattern": "a?b?c", "string": "axbyc", "flags": [], "result": "MATCH"}
+{"pattern": "?/?", "string": "a/b", "flags": [], "result": "MATCH"}
+{"pattern": "*?", "string": "x", "flags": [], "result": "MATCH"}
+{"pattern": "*?", "string": "", "flags": [], "result": "NOMATCH"}
+{"pattern": "[abc]", "string": "a", "flags": [], "result": "MATCH"}
+{"pattern": "[abc]", "string": "d", "flags": [], "result": "NOMATCH"}
+{"pattern": "[abc]", "string": "ab", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a-z]", "string": "m", "flags": [], "result": "MATCH"}
+{"pattern": "[a-z]", "string": "M", "flags": [], "result": "NOMATCH"}
+{"pattern": "[0-9]", "string": "7", "flags": [], "result": "MATCH"}
+{"pattern": "[0-9]", "string": "a", "flags": [], "result": "NOMATCH"}
+{"pattern": "[a-cx-z]", "string": "b", "flags": [], "result": "MATCH"}
+{"pattern": "[a-cx-z]", "string": "y", "flags": [], "result": "MATCH"}
+{"pattern": "[a-cx-z]", "string": "d", "flags": [], "result": "NOMATCH"}
+{"pattern": "[!abc]", "string": "d", "flags": [], "result": "MATCH"}
+{"pattern": "[!abc]", "string": "a", "flags": [], "result": "NOMATCH"}
+{"pattern": "[^abc]", "string": "b", "flags": [], "result": "NOMATCH"}
+{"pattern": "[]a]", "string": "]", "flags": [], "result": "MATCH"}
+{"pattern": "[]a]", "string": "a", "flags": [], "result": "MATCH"}
+{"pattern": "[-a]", "string": "-", "flags": [], "result": "MATCH"}
+{"pattern": "[a-]", "string": "-", "flags": [], "result": "MATCH"}
+{"pattern": "[-]", "string": "-", "flags": [], "result": "MATCH"}
+{"pattern": "[!]]", "string": "]", "flags": [], "result": "NOMATCH"}
+{"pattern": "[!]]", "string": "x", "flags": [], "result": "MATCH"}
+{"pattern": "[z-a]", "string": "z", "flags": [], "result": "NOMATCH"}
+{"pattern": "[z-a]", "string": "-", "flags": [], "result": "NOMATCH"}
+{"pattern": "[]", "string": "]", "flags": [], "result": "NOMATCH"}
+{"pattern": "[abc", "string": "a", "flags": [], "result": "NOMATCH"}
+{"pattern": "[x", "string": "[", "flags": [], "result": "NOMATCH"}
+{"pattern": "a[bc]d", "string": "abd", "flags": [], "result": "MATCH"}
+{"pattern": "a[bc]d", "string": "acd", "flags": [], "result": "MATCH"}
+{"pattern": "a[bc]d", "string": "ad", "flags": [], "result": "NOMATCH"}
+{"pattern": "file[0-9].c", "string": "file7.c", "flags": [], "result": "MATCH"}
+{"pattern": "[a-zA-Z0-9_]", "string": "_", "flags": [], "result": "MATCH"}
+{"pattern": "\\*", "string": "*", "flags": [], "result": "MATCH"}
+{"pattern": "\\*", "string": "a", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\?", "string": "?", "flags": [], "result": "MATCH"}
+{"pattern": "\\[", "string": "[", "flags": [], "result": "MATCH"}
+{"pattern": "\\\\", "string": "\\", "flags": [], "result": "MATCH"}
+{"pattern": "a\\*b", "string": "a*b", "flags": [], "result": "MATCH"}
+{"pattern": "\\\\*", "string": "\\abc", "flags": [], "result": "MATCH"}
+{"pattern": "a\\", "string": "a", "flags": [], "result": "NOMATCH"}
+{"pattern": "a\\", "string": "a\\", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\", "string": "\\", "flags": [], "result": "NOMATCH"}
+{"pattern": "\\*", "string": "\\x", "flags": ["FNM_NOESCAPE"], "result": "MATCH"}
+{"pattern": "\\*", "string": "*", "flags": ["FNM_NOESCAPE"], "result": "NOMATCH"}
+{"pattern": "\\*", "string": "\\", "flags": ["FNM_NOESCAPE"], "result": "MATCH"}
+{"pattern": "*.c", "string": "src/a.c", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "*/*.c", "string": "src/a.c", "flags": ["FNM_PATHNAME"], "result": "MATCH"}
+{"pattern": "src/*", "string": "src/a/b", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "src/*", "string": "src/a", "flags": ["FNM_PATHNAME"], "result": "MATCH"}
+{"pattern": "a*b", "string": "a/b", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "a*b", "string": "aXb", "flags": ["FNM_PATHNAME"], "result": "MATCH"}
+{"pattern": "a?b", "string": "a/b", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[/]", "string": "/", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "[ab/]", "string": "/", "flags": ["FNM_PATHNAME"], "result": "NOMATCH"}
+{"pattern": "a/*/c", "string": "a/b/c", "flags": ["FNM_PATHNAME"], "result": "MATCH"}
+{"pattern": "*/b", "string": "a/b", "flags": ["FNM_PATHNAME"], "result": "MATCH"}
+{"pattern": "*", "string": ".hidden", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "*", "string": "normal", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "*", "string": "a.b", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": ".*", "string": ".hidden", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "?", "string": ".", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "[.]", "string": ".", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "\\*", "string": ".x", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "\\*", "string": "*", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "\\*x", "string": "*x", "flags": ["FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "\\*x", "string": ".x", "flags": ["FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "*", "string": "a/.b", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "*", "string": ".a/b", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "*/*", "string": "a/.b", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "*/.*", "string": "a/.b", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "a/*", "string": "a/.b", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "NOMATCH"}
+{"pattern": "a/*", "string": "a/b", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "MATCH"}
+{"pattern": ".*", "string": ".a", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "src/.*", "string": "src/.config", "flags": ["FNM_PATHNAME", "FNM_PERIOD"], "result": "MATCH"}
+{"pattern": "A", "string": "a", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "abc", "string": "ABC", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "ABC", "string": "abc", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "[A-Z]", "string": "q", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "[a-z]", "string": "Q", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "[a-z]", "string": "5", "flags": ["FNM_CASEFOLD"], "result": "NOMATCH"}
+{"pattern": "AbC", "string": "aBc", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "AbC", "string": "xYz", "flags": ["FNM_CASEFOLD"], "result": "NOMATCH"}
+{"pattern": "*abc*", "string": "xxABCyy", "flags": ["FNM_CASEFOLD"], "result": "MATCH"}
+{"pattern": "src/*.C", "string": "SRC/A.C", "flags": ["FNM_CASEFOLD", "FNM_PATHNAME"], "result": "MATCH"}
+{"pattern": "\\*", "string": "\\x", "flags": ["FNM_NOESCAPE", "FNM_PATHNAME"], "result": "MATCH"}

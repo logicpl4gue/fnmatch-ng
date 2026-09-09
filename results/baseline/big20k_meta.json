@@ -1,0 +1,36 @@
+{
+  "generator": "gen_corpus.py v2",
+  "count": 20000,
+  "seed": 42,
+  "flag_mix": {
+    "CASEFOLD": 2177,
+    "NOESCAPE": 2278,
+    "PATHNAME": 2145,
+    "PATHNAME+CASEFOLD": 2194,
+    "PATHNAME+PERIOD": 2200,
+    "PERIOD": 2099,
+    "[]": 6907
+  },
+  "token_counts": {
+    "class": 8456,
+    "esc": 10725,
+    "lit": 35937,
+    "negclass": 1605,
+    "q": 12594,
+    "star": 18480
+  },
+  "pattern_len_chars": {
+    "min": 1,
+    "max": 12
+  },
+  "string_len_chars": {
+    "min": 0,
+    "max": 16
+  },
+  "alphabet": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ/.!^\\[]*?-",
+  "excluded": [
+    "POSIX [:classes:]",
+    "bytes>=0x80 (C-locale scope)"
+  ],
+  "gen_seconds": 0.264
+}
