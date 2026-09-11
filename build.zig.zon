@@ -1,0 +1,10 @@
+.{
+    .name = .fnmatch_ng,
+    .version = "0.1.0",
+    .fingerprint = 0x3206f2b52cdc6087,
+    .minimum_zig_version = "0.14.1",
+    .paths = .{
+        "build.zig",
+        "src/",
+    },
+}

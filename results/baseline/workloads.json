@@ -1,5 +1,5 @@
 {
- "date": "2026-09-09",
+ "date": "2026-09-12",
  "study": "normal-workload benchmark (plan sections 22-25)",
  "reference": "vendored musl 1.2.5 (compat/musl_fnmatch.c) via bench/adversarial_musl.exe",
  "ours": "src/matcher.zig, zig 0.14.1, ReleaseFast",
@@ -18,178 +18,178 @@
   "literal-heavy": {
    "ours": {
     "n": 240,
-    "median_ns": 19.0,
-    "mean_ns": 19.6,
-    "stddev_ns": 6.6,
-    "p95_ns": 35,
-    "min_ns": 7,
-    "max_ns": 48
+    "median_ns": 35.0,
+    "mean_ns": 36.0,
+    "stddev_ns": 13.7,
+    "p95_ns": 70,
+    "min_ns": 15,
+    "max_ns": 101
    },
    "musl": {
     "n": 240,
-    "median_ns": 60.0,
-    "mean_ns": 63.3,
-    "stddev_ns": 24.1,
-    "p95_ns": 116,
-    "min_ns": 20,
-    "max_ns": 189
+    "median_ns": 58.0,
+    "mean_ns": 60.6,
+    "stddev_ns": 21.2,
+    "p95_ns": 109,
+    "min_ns": 19,
+    "max_ns": 150
    }
   },
   "single-star": {
    "ours": {
     "n": 240,
-    "median_ns": 16.0,
-    "mean_ns": 16.1,
-    "stddev_ns": 1.4,
-    "p95_ns": 17,
-    "min_ns": 14,
-    "max_ns": 24
+    "median_ns": 17.0,
+    "mean_ns": 17.0,
+    "stddev_ns": 0.8,
+    "p95_ns": 18,
+    "min_ns": 16,
+    "max_ns": 22
    },
    "musl": {
     "n": 240,
-    "median_ns": 27.0,
-    "mean_ns": 27.1,
-    "stddev_ns": 4.6,
-    "p95_ns": 35,
+    "median_ns": 26.0,
+    "mean_ns": 26.4,
+    "stddev_ns": 4.3,
+    "p95_ns": 33,
     "min_ns": 18,
-    "max_ns": 43
+    "max_ns": 42
    }
   },
   "prefix-star": {
    "ours": {
     "n": 240,
-    "median_ns": 14.0,
-    "mean_ns": 14.7,
-    "stddev_ns": 2.0,
-    "p95_ns": 18,
-    "min_ns": 12,
-    "max_ns": 21
+    "median_ns": 22.0,
+    "mean_ns": 23.5,
+    "stddev_ns": 5.0,
+    "p95_ns": 36,
+    "min_ns": 18,
+    "max_ns": 38
    },
    "musl": {
     "n": 240,
     "median_ns": 27.0,
-    "mean_ns": 33.1,
-    "stddev_ns": 12.2,
-    "p95_ns": 58,
+    "mean_ns": 32.3,
+    "stddev_ns": 11.8,
+    "p95_ns": 57,
     "min_ns": 19,
-    "max_ns": 74
+    "max_ns": 62
    }
   },
   "suffix-star": {
    "ours": {
     "n": 240,
     "median_ns": 19.0,
-    "mean_ns": 19.6,
-    "stddev_ns": 2.0,
-    "p95_ns": 22,
-    "min_ns": 15,
-    "max_ns": 30
+    "mean_ns": 19.5,
+    "stddev_ns": 0.8,
+    "p95_ns": 21,
+    "min_ns": 18,
+    "max_ns": 22
    },
    "musl": {
     "n": 240,
     "median_ns": 46.0,
-    "mean_ns": 49.3,
-    "stddev_ns": 11.5,
-    "p95_ns": 71,
+    "mean_ns": 48.7,
+    "stddev_ns": 11.8,
+    "p95_ns": 69,
     "min_ns": 29,
-    "max_ns": 74
+    "max_ns": 93
    }
   },
   "multi-star": {
    "ours": {
     "n": 240,
-    "median_ns": 60.0,
-    "mean_ns": 61.6,
+    "median_ns": 71.0,
+    "mean_ns": 72.4,
     "stddev_ns": 19.8,
-    "p95_ns": 89,
-    "min_ns": 31,
-    "max_ns": 97
+    "p95_ns": 96,
+    "min_ns": 42,
+    "max_ns": 116
    },
    "musl": {
     "n": 240,
-    "median_ns": 125.5,
-    "mean_ns": 122.5,
-    "stddev_ns": 42.6,
-    "p95_ns": 183,
-    "min_ns": 51,
-    "max_ns": 311
+    "median_ns": 120.5,
+    "mean_ns": 116.9,
+    "stddev_ns": 37.0,
+    "p95_ns": 174,
+    "min_ns": 47,
+    "max_ns": 201
    }
   },
   "question-marks": {
    "ours": {
     "n": 240,
-    "median_ns": 30.0,
-    "mean_ns": 30.1,
-    "stddev_ns": 5.0,
-    "p95_ns": 37,
-    "min_ns": 16,
-    "max_ns": 39
+    "median_ns": 34.0,
+    "mean_ns": 33.6,
+    "stddev_ns": 4.6,
+    "p95_ns": 40,
+    "min_ns": 20,
+    "max_ns": 45
    },
    "musl": {
     "n": 240,
     "median_ns": 34.0,
-    "mean_ns": 34.8,
-    "stddev_ns": 7.7,
-    "p95_ns": 48,
+    "mean_ns": 33.9,
+    "stddev_ns": 7.1,
+    "p95_ns": 46,
     "min_ns": 16,
-    "max_ns": 68
+    "max_ns": 60
    }
   },
   "brackets": {
    "ours": {
     "n": 240,
-    "median_ns": 29.0,
-    "mean_ns": 31.0,
-    "stddev_ns": 12.7,
-    "p95_ns": 51,
-    "min_ns": 12,
-    "max_ns": 59
+    "median_ns": 35.0,
+    "mean_ns": 33.3,
+    "stddev_ns": 14.2,
+    "p95_ns": 60,
+    "min_ns": 15,
+    "max_ns": 70
    },
    "musl": {
     "n": 240,
     "median_ns": 41.0,
-    "mean_ns": 45.7,
-    "stddev_ns": 21.5,
+    "mean_ns": 45.6,
+    "stddev_ns": 21.8,
     "p95_ns": 81,
     "min_ns": 17,
-    "max_ns": 121
+    "max_ns": 148
    }
   },
   "pathname": {
    "ours": {
     "n": 240,
-    "median_ns": 19.0,
-    "mean_ns": 19.3,
-    "stddev_ns": 6.3,
-    "p95_ns": 28,
-    "min_ns": 6,
-    "max_ns": 44
+    "median_ns": 23.0,
+    "mean_ns": 24.3,
+    "stddev_ns": 12.1,
+    "p95_ns": 49,
+    "min_ns": 9,
+    "max_ns": 82
    },
    "musl": {
     "n": 240,
-    "median_ns": 41.0,
-    "mean_ns": 54.1,
-    "stddev_ns": 47.6,
-    "p95_ns": 148,
+    "median_ns": 40.0,
+    "mean_ns": 52.2,
+    "stddev_ns": 45.0,
+    "p95_ns": 147,
     "min_ns": 4,
-    "max_ns": 267
+    "max_ns": 269
    }
   },
   "fail-early": {
    "ours": {
     "n": 240,
-    "median_ns": 11.0,
-    "mean_ns": 11.0,
-    "stddev_ns": 2.0,
-    "p95_ns": 14,
-    "min_ns": 6,
-    "max_ns": 21
+    "median_ns": 4.0,
+    "mean_ns": 5.6,
+    "stddev_ns": 3.0,
+    "p95_ns": 13,
+    "min_ns": 3,
+    "max_ns": 15
    },
    "musl": {
     "n": 240,
     "median_ns": 5.0,
-    "mean_ns": 5.2,
-    "stddev_ns": 0.7,
+    "mean_ns": 5.0,
+    "stddev_ns": 0.8,
     "p95_ns": 7,
     "min_ns": 4,
     "max_ns": 9
@@ -198,21 +198,21 @@
   "fail-late": {
    "ours": {
     "n": 240,
-    "median_ns": 12.0,
-    "mean_ns": 12.5,
-    "stddev_ns": 1.8,
-    "p95_ns": 15,
-    "min_ns": 9,
-    "max_ns": 21
+    "median_ns": 3.0,
+    "mean_ns": 3.0,
+    "stddev_ns": 0.2,
+    "p95_ns": 3,
+    "min_ns": 3,
+    "max_ns": 5
    },
    "musl": {
     "n": 240,
-    "median_ns": 32.5,
-    "mean_ns": 33.0,
-    "stddev_ns": 5.0,
-    "p95_ns": 42,
+    "median_ns": 31.0,
+    "mean_ns": 32.0,
+    "stddev_ns": 4.5,
+    "p95_ns": 40,
     "min_ns": 23,
-    "max_ns": 50
+    "max_ns": 47
    }
   }
  }

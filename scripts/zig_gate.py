@@ -46,24 +46,16 @@ def main(files):
         gen = os.path.join(td, "gate_test.zig")
         with open(gen, "w", encoding="utf-8") as fh:
             fh.write("\n".join(lines) + "\n")
-        # run alongside src/ so @import("matcher") resolves via --pkg? use test file that includes matcher relatively:
-        src = os.path.join("fnmatch-ng" if os.path.exists("fnmatch-ng/src/matcher.zig") else ".", "src", "matcher.zig")
-        root = os.path.join("fnmatch-ng" if os.path.exists("fnmatch-ng/src/matcher.zig") else ".")
-        # simplest: put generated test in src dir temporarily
-        import shutil
-        placed = os.path.join(root, "src", "gate_test_tmp.zig")
-        shutil.copy(gen, placed)
-        try:
-            with open(placed, "r+", encoding="utf-8") as fh:
-                body = fh.read().replace('@import("matcher")', '@import("matcher.zig")')
-                fh.seek(0)
-                fh.write(body)
-                fh.truncate()
-            r = subprocess.run([ZIG, "test", placed], capture_output=True, text=True)
-            print(r.stdout[-2000:] if r.stdout else "")
-            print(r.stderr[-2000:] if r.stderr else "", file=sys.stderr)
-        finally:
-            os.remove(placed)
+        # Optimized gate via named modules: no src/ mutation, exercises
+        # ReleaseSafe codegen (tail anchor, byte guards) like the lib ships.
+        r = subprocess.run(
+            [ZIG, "test", "-O", "ReleaseSafe",
+             "--dep", "matcher",
+             "-Mroot=" + gen,
+             "-Mmatcher=src/matcher.zig"],
+            capture_output=True, text=True)
+        print(r.stdout[-2000:] if r.stdout else "")
+        print(r.stderr[-2000:] if r.stderr else "", file=sys.stderr)
     # report: zig build test runs ALL tests incl. gate; green means vectors agree
     print(f"vectors checked: {len(cases)}")
     return r.returncode

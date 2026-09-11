@@ -5,7 +5,7 @@
 [![language](https://img.shields.io/badge/language-Zig-f7a41d)](https://ziglang.org)
 [![deps](https://img.shields.io/badge/dependencies-0-green)](.)
 [![heap](https://img.shields.io/badge/heap%20allocs%20per%20match-0-green)](.)
-[![size](https://img.shields.io/badge/static%20lib-43.5%20KiB-blue)](.)
+[![size](https://img.shields.io/badge/static%20lib-13.8%20KiB-blue)](.)
 [![parity](https://img.shields.io/badge/musl%201.2.5%20agreement-20%2C911%20%2F%2020%2C911-green)](.)
 [![speed](https://img.shields.io/badge/faster%20than%20musl-10%20of%2010%20workloads-green)](.)
 
@@ -37,9 +37,9 @@ implementation instead of assumed correct.
 Watch it work (real calls, `0` == match, `1` == no match):
 
 ```c
-fnmatch_ng_flags("src/*.zig", "src/main.zig", FNM_PATHNAME);            /* 0 — trivially */
-fnmatch_ng_flags("*.zig", "src/main.zig", FNM_PATHNAME);                /* 1 — * must not cross '/' */
-fnmatch_ng_flags("*.zig", ".main.zig", FNM_PATHNAME | FNM_PERIOD);      /* 1 — leading '.' needs an explicit match */
+fnmatch_ng_flags("src/*.zig", "src/main.zig", FNM_PATHNAME);            /* 0: trivially */
+fnmatch_ng_flags("*.zig", "src/main.zig", FNM_PATHNAME);                /* 1: * must not cross '/' */
+fnmatch_ng_flags("*.zig", ".main.zig", FNM_PATHNAME | FNM_PERIOD);      /* 1: leading '.' needs an explicit match */
 fnmatch_ng_flags("*.zig", "main.zig", 0);                               /* 0 */
 ```
 
@@ -50,28 +50,27 @@ That's the whole job. Here is the whole proof.
 ## Scoreboard
 
 Every claim below comes from running both implementations on the **same
-machine** against the **same inputs**: a seeded, grammar-aware generator's
-20k-vector corpus, 794 pinned unit vectors, and the 117-case m0 baseline —
-**20,911 vectors**, plus randomized differential cases.
+machine** against the **same inputs**: the 20,911-vector corpus (composition
+in [The corpus](#the-corpus)), plus randomized differential cases.
 
 ```
-fnmatch-ng vs musl libc 1.2.5        (vendored — the build box has no system fnmatch)
+fnmatch-ng vs musl libc 1.2.5        (vendored; the build box has no system fnmatch)
 
-  in-scope test vectors   ████████████████████  20,911 / 20,911  agree  ✅
+  in-scope test vectors   ████████████████████  20,911 / 20,911  agree
   divergences             D001–D006             every one audited, none silent
-  glibc cross-check       ░░░░░░░░░░░░░░░░░░░░  parked — no Linux host yet (see Status)
+  glibc cross-check       ░░░░░░░░░░░░░░░░░░░░  parked: no Linux host yet (see Status)
 ```
 
 **20,911 / 20,911.** Not "passes its own test suite": every in-scope vector
 produces the identical match/no-match answer as musl libc 1.2.5, the
-implementation famous for doing fnmatch correctly. Composition: 20,000
-generated + 794 pinned unit vectors + 117 m0 baseline.
+implementation famous for doing fnmatch correctly.
 
-One corpus expectation is stale, and it's D001's case: `m0_baseline.jsonl`
-line 55 (`[z-a]` vs `z`) still says NOMATCH while musl and this matcher both
-MATCH — the file predates the D001 mirror decision. It stays as the one
-vector whose *file* expectation disagrees with the live musl result, by
-design, so nobody confuses a shipped expectation for a live verdict.
+> [!NOTE]
+> One corpus expectation is stale, and it's D001's case: `m0_baseline.jsonl`
+> line 55 (`[z-a]` vs `z`) still says NOMATCH while musl and this matcher both
+> MATCH; the file predates the D001 mirror decision. It stays as the one
+> vector whose *file* expectation disagrees with the live musl result, by
+> design, so nobody confuses a shipped expectation for a live verdict.
 
 **Six documented divergences, D001–D006.** Differential testing *will* find
 disagreements, and hiding them is how matchers rot. Each of the six is filed
@@ -99,17 +98,17 @@ session (post-memchr-port run). Lower is better.
 | brackets | **32 ns** | 42 ns | **1.3×** |
 | question-marks | **32 ns** | 35 ns | **1.1×** |
 
-**All 10 workload categories go to fnmatch-ng** — between **1.1× and 8.0×
+**All 10 workload categories go to fnmatch-ng**, between **1.1× and 8.0×
 faster** (0.13×–0.91× of musl's ns). Full harness and methodology ship with
 the repo so you can re-run the numbers yourself. If you can make the table
 look worse, open an issue. We'd genuinely like to know.
 
 ### The old loss that became a win
 
-Pre-port, `fail-early` cost us an honest **11 ns vs 5 ns** — a fixed compile
+Pre-port, `fail-early` cost us an honest **11 ns vs 5 ns**: a fixed compile
 tax paid even when a call died on byte one, and the one category musl won.
 The memchr star-skip port added a byte-0 guard that erases it: fail-early now
-reads **3 ns vs 5 ns**, ours. 10/10, with nothing swept under the table.
+reads **3 ns vs 5 ns**, ours. 10/10.
 
 ### The two regressions we're not hiding
 
@@ -127,9 +126,11 @@ Benchmarks on friendly inputs prove nothing. Matchers die on **pathological
 patterns**, so that's where the corpus points its worst intentions:
 
 - **Star-count attack:** raise the number of `*` in the pattern from 2 to
-  24 (k=2–10 study plus a k=12–24 extension). No cliff, no runaway: the
-  A-family stays in a 14–39 ns band at k=2–10, and only the extension's
-  n=128 tail reaches a 47–71 ns band at k=12–24.
+  24. No cliff, no runaway on failing tails: matches stay in a 14–39 ns band up to 10 stars,
+  and the 12-to-24-star extension tops out at 47–71 ns on 128-byte strings.
+  Matching tails are the honest footnote: at k=24 the B family costs us
+  325 ns vs musl's 279 (n=128) and 425 vs 277 (n=256). Full rows in
+  `results/baseline/adversarial_ext.json`.
 - **The textbook killer:** naive matchers go exponential on
   `*a*a*…*b` against a long run of `a`s. It kills neither fnmatch-ng nor
   musl; both return instantly.
@@ -137,8 +138,7 @@ patterns**, so that's where the corpus points its worst intentions:
   matcher under ReleaseSafe, where the Zig runtime turns any overstep into
   a crash with a stack trace. Seeds are the API, runs are deterministic,
   and 12.5% of patterns are floods built to blow past the 128-token buffer
-  so the bytewise fallback (`matchBytewise`) gets exercised too — the path
-  the compiled core otherwise hides.
+  so the bytewise fallback (`matchBytewise`) gets exercised too.
 
 If you know a pattern family that breaks glob matchers and it's not in the
 corpus, that's not a complaint, that's a contribution. File it.
@@ -153,8 +153,8 @@ Things this repo believes and won't apologize for:
    matcher has no business calling malloc. If yours does, ask it why.
 2. **Undocumented corners are bugs with seniority.** 38 years of "that's just
    how libc does it" is how `*` swallows a `/` somewhere in your build
-   system at 2am. We filed all six of ours — and one of them, D006, was a
-   real bug in our own code, caught by the corpus, not by confidence.
+   system at 2am. We filed all six of ours, and the one that was our own bug
+   gets its own section [below](#the-bug-we-found-on-purpose).
 3. **A benchmark you can't lose is marketing.** The two accepted star
    regressions (+3/+2 ns over a prototype's best reading) are in the same
    table as the 8× fail-late. Any benchmark page without a loss row is
@@ -175,16 +175,17 @@ Questions people will argue about, answered with a stance:
   defined by whichever libc your user happens to link. Ours is defined by
   20,911 vectors you can re-run. Pick your religion.
 - **"Single-star is 3 ns over the prototype's best. Noise?"** It's inside
-  this box's ±20% run-to-run variance, it still beats musl 1.4×, and we
-  print it next to the win. If that's noise, it's the honest kind —
-  re-measure on your machine before quoting ours.
+  this box's ±20% run-to-run variance and still beats musl 1.4×; the full
+  ledger is [the two regressions we're not
+  hiding](#the-two-regressions-were-not-hiding). Re-measure on your machine
+  before quoting ours.
 - **"What about glibc?"** Parked, not dodged: the build box has no Linux
   host, and MinGW can't link glibc. The first Linux box that appears gets
-  to be the referee, same harness, same machine — and the next number this
+  to be the referee, same harness, same machine, and the next number this
   README prints is the glibc one, whatever it says, including if it's bad
   for us.
 - **"Why trap fuzzing and not libFuzzer/AFL?"** Same answer as glibc: no
-  Linux host. So the memory-safety leg runs where the code runs — in
+  Linux host. So the memory-safety leg runs where the code runs: in
   ReleaseSafe, where the Zig runtime's own traps are the oracle and every
   run is reproducible from a seed.
 - **"No `[:classes:]`? No Unicode? Toy project?"** Scope is frozen on
@@ -207,12 +208,11 @@ self-contained enough to compile anywhere.
 
 ### The corpus
 
-A **seeded, grammar-aware generator** produced the 20k-vector corpus: grammar-
-aware so it hunts the parts of the grammar where matchers actually break:
-bracket edge cases, escapes, `*` next to `/` next to `.`, star storms. Seeded,
-so the same corpus reproduces forever. On top of it: **794 pinned unit
-vectors** and the 117-case m0 baseline — the same 20,911 inputs the scoreboard
-counts.
+The scoreboard's 20,911 inputs come in three layers: 20,000 vectors from a
+**seeded, grammar-aware generator** (grammar-aware so it hunts the parts of
+the grammar where matchers actually break: bracket edge cases, escapes, `*`
+next to `/` next to `.`, star storms; seeded so the same corpus reproduces
+forever), 794 pinned unit vectors, and the 117-case m0 baseline.
 
 ### The differential run
 
@@ -276,17 +276,16 @@ int fnmatch_ng_flags(const char *pattern, const char *string, int flags);
 /* flags: FNM_PATHNAME 0x1, FNM_NOESCAPE 0x2, FNM_PERIOD 0x4, FNM_CASEFOLD 0x10 */
 
 if (fnmatch_ng_flags("src/*.zig", "src/main.zig", 0x1) == 0) {
-    /* matched — without a single heap allocation */
+    /* matched: without a single heap allocation */
 }
 ```
 
 ```console
-$ zig build -Doptimize=ReleaseFast   # → zig-out/lib/fnmatch_ng.lib (~43.5 KiB)
+$ zig build -Doptimize=ReleaseFast   # → zig-out/lib/fnmatch_ng.lib (~13.8 KiB)
 $ zig build test                     # 39 unit tests, all green
 $ python3 scripts/zig_gate.py tests/unit/*.jsonl tests/corpus/big20k_expected.jsonl
                                      # 20,794 pinned vectors green; the live-musl
                                      # differential adds m0's 117 → 20,911/20,911
-                                     # (m0:55's D001 expectation stays stale by design)
 $ zig run -O ReleaseSafe --dep matcher -Mroot=fuzz/memfuzz.zig \
       -Mmatcher=src/matcher.zig -- 0x5eed 200000
                                      # memory-safety leg: 200k soup iterations, exit 0
@@ -305,20 +304,21 @@ dependencies, by design. Sixty seconds from clone to re-running our scoreboard.
 ## Status
 
 - **Compatibility:** frozen against musl 1.2.5 at 20,911/20,911; D001–D006 in
-  the ledger (`docs/divergences.md`). One corpus expectation (m0:55, D001's
-  case) is deliberately stale so a file expectation never impersonates a
-  live musl verdict.
+  the ledger (`docs/divergences.md`). One corpus expectation (m0:55) is
+  deliberately stale (see [Scoreboard](#scoreboard)).
 - **Shipped since the port:** memory-safety leg (`fuzz/memfuzz.zig`) and the
   find-style demo (`demo/filter.zig`, with `--verify` against vendored musl).
-- **glibc cross-check:** parked — no Linux host on the build box. The first
-  Linux box that appears decides, same harness, same machine. The next number
-  this README prints will be that one.
+- **glibc cross-check:** parked, pending a Linux host on the build box. The
+  first Linux box that appears decides, same harness, same machine. The next
+  number this README prints will be that one.
 - **Next:** long-soak the fuzzer; land the glibc leg when a Linux host shows
   up.
+- **[YOU DECIDE] Which deferred scope item falls first?** `[:classes:]`,
+  `FNM_LEADING_DIR`, or Unicode — vote in issues. Top-voted becomes the next
+  milestone, whatever it says.
 
-No hype beyond these numbers. The 8× fail-late, the two accepted star
-regressions, and the 20,911 green are all here — run the harness and check
-all of them.
+No hype beyond these numbers: run [Quick start](#quick-start) and check every
+one.
 
 ---
 
